@@ -1,0 +1,90 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_init.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: lkonig <marvin@42.fr>                      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/10/27 15:05:23 by lkonig            #+#    #+#             */
+/*   Updated: 2020/10/27 15:08:15 by lkonig           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "../cub3d.h"
+
+void	init_param(t_param *param)
+{
+	param->tempmap = NULL;
+	if (!(param->fcol = (int *)malloc(sizeof(int) * 3))
+		|| !(param->ccol = (int *)malloc(sizeof(int) * 3)))
+		error(1, param);
+	if (!(param->tempmap = (char **)malloc(sizeof(char *) * 100)))
+		error(1, param);
+	param->ccol[0] = -1;
+	param->fcol[0] = -1;
+//	param->tempmap = NULL;
+	param->map = NULL;
+	param->mapsize = (t_multiint){.x = 0, .y = 0};
+	param->player.angle = -1;
+	param->player.pos.x = -1;
+	param->player.pos.y = -1;
+	param->res = (t_multiint){.x = -1, .y = -1};
+	param->screen_res = (t_multiint){.x = -1, .y = -1};
+	param->plane.angles = -1;
+	param->plane.dist = -1;
+	param->nb_sprite = 0;
+	param->win_ptr = NULL;
+	if (!(param->mlx_ptr = mlx_init()))
+		error(0, param);
+}
+
+int		init_player(t_param *param, char dir, int pos_x, int pos_y)
+{
+	param->player.pos.x = pos_x + 32;
+	param->player.pos.y = pos_y + 32;
+	if (dir == 'N')
+		param->player.angle = 90;
+	else if (dir == 'W')
+		param->player.angle = 180;
+	else if (dir == 'S')
+		param->player.angle = 270;
+	else if (dir == 'E')
+		param->player.angle = 0;
+	else
+	{
+		error(9, param);
+	}
+	param->map[pos_y][pos_x] = '0';
+	return (0);
+}
+
+void	init_sprite(t_param *param, unsigned int k)
+{
+	param->sprites[k].pos.x = -1;
+	param->sprites[k].pos.y = -1;
+	param->sprites[k].col = -1;
+	param->sprites[k].midcol = -1;
+	param->sprites[k].maxcol = -1;
+	param->sprites[k].dist = -1;
+	param->sprites[k].visible = -1;
+}
+
+t_point	init_ptv(double angle, t_point b, t_param *p, double tan)
+{
+	if (angle >= 90 && angle < 270)
+		b.pos.x = p->player.pos.x / 64 * 64 - 0.000001;
+	else
+		b.pos.x = p->player.pos.x / 64 * 64 + 64;
+	b.pos.y = p->player.pos.y + (p->player.pos.x - b.pos.x) * tan;
+	return (b);
+}
+
+t_point	init_pth(double angle, t_point a, t_param *p, double tan)
+{
+	if (angle < 180)
+		a.pos.y = p->player.pos.y / 64 * 64 - 0.000001;
+	else
+		a.pos.y = p->player.pos.y / 64 * 64 + 64;
+	a.pos.x = p->player.pos.x + (p->player.pos.y - a.pos.y) / tan;
+	return (a);
+}

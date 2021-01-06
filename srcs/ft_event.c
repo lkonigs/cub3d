@@ -39,36 +39,32 @@ int			deal_key(int key, void *param)
 
 void		turn(t_param *param, int key)
 {
-	double	temp;
+//	double	temp;
 	if (key == 65361)
 	{
 		param->player.angle += PTS;
+		param->player.dir.x = cos(param->player.angle * M_PI / 180);
+		param->player.dir.y = - sin(param->player.angle * M_PI / 180);
 	/*	temp = param->player.dir.x;
 		param->player.dir.x = param->player.dir.x * cos(PTS) - param->player.dir.y * sin(PTS);
-		param->player.dir.y = temp * sin(PTS) + param->player.dir.y * cos(PTS); */
-		param->player.dir.x = cos(param->player.angle * M_PI / 180);
-		param->player.dir.y = sin(param->player.angle * M_PI / 180);
-		if (abs(param->player.dir.y - param->player.dir.x) == 1)
-			printf("Dir diff equals 1\n");
-		else
-			printf("param->player.dir.x = %f && param->player.dir.y = %f\n", param->player.dir.x, param->player.dir.y);
+		param->player.dir.y = temp * sin(PTS) + param->player.dir.y * cos(PTS);
 		temp = param->plane.vect.x;
 		param->plane.vect.x = param->plane.vect.x * cos(PTS) - param->plane.vect.y * sin(PTS);
 		param->plane.vect.y = temp * sin(PTS) + param->plane.vect.y * cos(PTS);
-	}
+*/	}
 	else if (key == 65363)
 	{
 		param->player.angle -= PTS;
+		
 		param->player.dir.x = cos(param->player.angle * M_PI / 180);
-		param->player.dir.y = sin(param->player.angle * M_PI / 180);
-		if (abs(param->player.dir.y - param->player.dir.x) == 1)
-			printf("Dir diff equals 1\n");
+		param->player.dir.y = - sin(param->player.angle * M_PI / 180);
 	/*	temp = param->player.dir.x;
 		param->player.dir.x = param->player.dir.x * cos(-PTS) - param->player.dir.y * sin(-PTS);
-		param->player.dir.y = temp * sin(-PTS) + param->player.dir.y * cos(-PTS); */
+		param->player.dir.y = temp * sin(-PTS) + param->player.dir.y * cos(-PTS);
 		temp = param->plane.vect.x;
 		param->plane.vect.x = param->plane.vect.x * cos(-PTS) - param->plane.vect.y * sin(-PTS);
 		param->plane.vect.y = temp * sin(-PTS) + param->plane.vect.y * cos(-PTS);
+*/	
 	}
 }
 

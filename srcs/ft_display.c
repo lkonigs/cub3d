@@ -59,14 +59,14 @@ void				sprite_set(t_param *param)
 	t_spwall		sp;
 
 	k = param->nb_sprite;
-	printf("________________________________\n\n");
+//	printf("________________________________\n\n");
 	while (k > 0)
 	{
-		printf("-----------SPRITE #%u----------\n_____x = %i___||____y = %i\n", k, param->sprites[k - 1].pos.x, param->sprites[k - 1].pos.y);
-		printf("-------------PLAYER------------\n_____x = %i___||____y = %i\n", param->player.pos.x, param->player.pos.y);
+//		printf("-----------SPRITE #%u----------\n_____x = %i___||____y = %i\n", k, param->sprites[k - 1].pos.x, param->sprites[k - 1].pos.y);
+//		printf("-------------PLAYER------------\n_____x = %i___||____y = %i\n", param->player.pos.x, param->player.pos.y);
 		sprite.x = param->sprites[k - 1].pos.x - param->player.pos.x;
 		sprite.y = param->sprites[k - 1].pos.y - param->player.pos.y;
-		printf("----------RELATIVE POS---------\n_____x = %i___||____y = %i\n", sprite.x, sprite.y);
+//		printf("----------RELATIVE POS---------\n_____x = %i___||____y = %i\n", sprite.x, sprite.y);
 
 
 
@@ -75,9 +75,9 @@ void				sprite_set(t_param *param)
 		transform.y = inv * (- param->plane.vect.y * sprite.x + param->plane.vect.x * sprite.y);
 		sp.screen.x = (int)(param->res.x / 2) * (1 + transform.x / transform.y);
 	//	sp.screen.x = (1 + transform.x / transform.y) / 2 * param->res.y;
-		printf("---------OTHER INFOS-----------\nTRANSFORMX = %f || TRANSFORMY = %f\nSCREENX = %i\n", transform.x, transform.y, sp.screen.x);
-		printf("DIR.X = %f || DIR.Y = %f\n", param->player.dir.x, param->player.dir.y);
-		printf("PLANE.X = %f || PLANE.Y = %f\n", param->plane.vect.x, param->plane.vect.y);
+//		printf("---------OTHER INFOS-----------\nTRANSFORMX = %f || TRANSFORMY = %f\nSCREENX = %i\n", transform.x, transform.y, sp.screen.x);
+//		printf("DIR.X = %f || DIR.Y = %f\n", param->player.dir.x, param->player.dir.y);
+//		printf("PLANE.X = %f || PLANE.Y = %f\n", param->plane.vect.x, param->plane.vect.y);
 
 	//	printf("Sprite #%u - transform.y = %f\n", k - 1, transform.y);
 	/*	sp.height = abs(param->res.y / transform.y);
@@ -99,7 +99,7 @@ void				sprite_set(t_param *param)
 			sp.drawend.x = param->res.x - 1;
 		sprite_disp(param, sp, transform, distbuf); */
 		set_sprite(param, k - 1, transform, sp.screen.x);
-		printf("-------------------------------\n\n");
+	//	printf("-------------------------------\n\n");
 		k--;
 	}
 }
@@ -114,7 +114,7 @@ void				display(t_param *param, int save)
 		param->res.y, "Cub3D");
 	if (param->win_ptr == NULL)
 		ft_exit(param);
-	upd_image(param);
+//	upd_image(param);
 	mlx_expose_hook(param->win_ptr, upd_image, (void *)param);
 	mlx_hook(param->win_ptr, 33, 0, deal_end, (void *)param);
 	mlx_hook(param->win_ptr, 2, (1L << 0), deal_key, (void *)param);
@@ -139,16 +139,7 @@ int					create_image(t_param *param)
 	{
 		tmp = set_col(param, set_wall(param, intersection(param, col, angle), col),
 			param->imgstr);
-	//	printf("tmp dist #%i = %f\n", col, tmp);
 		param->distbuf[col] = tmp;
-	//	printf("%f\n", param->distbuf[col]);
-//		k = -1;
-/*		while (++k < param->nb_sprite)
-		{
-			if (param->sprites[k].visible == -1 ||
-				(param->sprites[k].maxcol - param->sprites[k].col < param->res.x))
-				inter_sprite(param, angle, col, k);
-		} */
 		angle -= param->plane.angles;
 		col++;
 	}
@@ -156,22 +147,6 @@ int					create_image(t_param *param)
 	display_sprite(param); */
 	sprite_set(param);
 	return (0);
-}
-
-void				display_sprite(t_param *param)
-{
-	unsigned int	k;
-
-	k = param->nb_sprite;
-	while (k > 0)
-	{
-/*		if (param->sprites[k - 1].visible == 1)
-			set_sprite(param, k - 1); */
-		param->sprites[k - 1].visible = -1;
-		param->sprites[k - 1].col = -1;
-		param->sprites[k - 1].maxcol = -1;
-		k--;
-	}
 }
 
 int					upd_image(t_param *param)

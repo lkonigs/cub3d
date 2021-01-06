@@ -179,7 +179,6 @@ int					inter_sp_v(t_param *p, double ang, int c, unsigned int k);
 void				update_col(t_param *param, t_spwall sp, char *str);
 t_spwall		set_sprite(t_param *param, int k, t_multidouble transform, int screenx);
 void				get_sprite(t_param *param, int i, int j, unsigned int k);
-void				display_sprite(t_param *param);
 void				error_more(int i);
 double				set_angle(double angle);
 void				set_sprite_info(t_param *param, int k, int col);
@@ -187,6 +186,5 @@ t_point				update_pointv(t_point b, double angle, double tan_angle);
 t_point				update_pointh(t_point a, double angle, double tan_angle);
 double				update_dist(t_point a, t_param *param);
 void				update_wall(t_spwall sp, char *str, t_param *param);
-void				correct_sprite(t_param *p);
 
 #endif

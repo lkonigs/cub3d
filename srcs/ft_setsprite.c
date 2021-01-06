@@ -80,31 +80,17 @@ t_spwall		set_sprite(t_param *param, int k, t_multidouble transform, int screenx
 	else
 		sp.height = 500000;
 	sp.width = sp.height;
-	printf("WIDTH = %i\nHEIGHT = %lli\n", sp.width, sp.height);
-//	sp.width = abs((int)param->res.y / transform.y);
+//	printf("WIDTH = %i\nHEIGHT = %lli\n", sp.width, sp.height);
 	param->sprites[k].col = screenx - (sp.width / 2);
-	if (param->sprites[k].col < 0)
-		param->sprites[k].col = 0;
 	param->sprites[k].maxcol = screenx + (sp.width / 2);
-	if (param->sprites[k].maxcol >= param->res.x)
-		param->sprites[k].maxcol = param->res.x - 1;
-	printf("#1 COL = %i\nLAST COL = %i\n", param->sprites[k].col, param->sprites[k].maxcol);
-	printf("RES.X = %i\n", param->res.x);
-/*	while ((param->sprites[k].maxcol - param->sprites[k].col < sp.height))
-	{
-		param->sprites[k].maxcol++;
-		param->sprites[k].col--;
-	}
-	while ((param->sprites[k].maxcol - param->sprites[k].col > sp.height))
-	{
-		param->sprites[k].maxcol--;
-		param->sprites[k].col++;
-	} */
-//	sp.width = param->sprites[k].maxcol - param->sprites[k].col;
+/*	if (param->sprites[k].maxcol >= param->res.x)
+		param->sprites[k].maxcol = param->res.x - 1; */
+//	printf("#1 COL = %i\nLAST COL = %i\n", param->sprites[k].col, param->sprites[k].maxcol);
+//	printf("RES.X = %i\n", param->res.x);
 	sp.heat = sp.height / 64.0;
 	sp.pos.x = param->sprites[k].col;
 	sp.pos.y = (param->res.y - sp.height) / 2;
-/*	if (param->sprites[k].col < 0)
+	if (param->sprites[k].col < 0)
 	{
 		sp.pos.x = 0;
 		sp.offset = (64 * (sp.pos.x - param->sprites[k].col)) / sp.width;
@@ -112,16 +98,15 @@ t_spwall		set_sprite(t_param *param, int k, t_multidouble transform, int screenx
 	else if (param->sprites[k].maxcol == param->res.x - 1)
 	{
 		sp.offset = 0;
-	} 
+	}
 	else
-	{ */
-	sp.offset = (64 * (sp.pos.x - param->sprites[k].col)) / sp.width;
+		sp.offset = (64 * (sp.pos.x - param->sprites[k].col)) / sp.width;
 //	}
 //	printf("first offset = %i\n", sp.offset);
 	while (sp.pos.x++ < param->sprites[k].maxcol && sp.pos.x < param->res.x && sp.pos.x > 0)
 	{
 //		if (sp.pos.x >= 0)
-		if(transform.y > 0)// && transform.y < (double)param->distbuf[sp.pos.x])
+		if(transform.y > 0 && transform.y < param->distbuf[(int)sp.pos.x])
 			update_col(param, sp, param->imgstr);
 		sp.offset = (64 * (sp.pos.x - param->sprites[k].col)) / sp.width;
 	}

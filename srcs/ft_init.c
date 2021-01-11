@@ -22,7 +22,6 @@ void	init_param(t_param *param)
 		error(1, param);
 	param->ccol[0] = -1;
 	param->fcol[0] = -1;
-//	param->tempmap = NULL;
 	param->map = NULL;
 	param->mapsize = (t_multiint){.x = 0, .y = 0};
 	param->player.angle = -1;

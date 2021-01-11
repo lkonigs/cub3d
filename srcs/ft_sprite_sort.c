@@ -12,8 +12,6 @@
 
 #include "../cub3d.h"
 
-#include <stdio.h>//
-
 void				sort_sprite(t_param *param)
 {
 	unsigned int	n;
@@ -30,12 +28,8 @@ void				sort_sprite(t_param *param)
 		}
 	}
 	k = 0;
-//	printf("SPRITES SORTING:\n");
 	while (k < param->nb_sprite)
-	{
-//		printf("Sprite #%u : x =  %i ||| y = %i ||| DIST = %f;\n", k, param->sprites[k].pos.x, param->sprites[k].pos.y, param->sprites[k].dist);
 		k++;
-	}
 }
 
 void				ft_switch(t_param *param, int k, int n)

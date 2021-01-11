@@ -42,6 +42,9 @@ void			update_wall(t_spwall sp, char *str, t_param *param)
 	i = 0;
 	j = get_j_sp(sp, param, &pix);
 	sp.height *= 4 * param->res.x;
+//	printf("init wall update ok\n");
+	if (abs(j) > 500)
+		printf("ERROR: let's do a check up\nsp.offset = %i\nsp.width = %i\nsp.pos.x = %f\n", sp.offset, sp.width, sp.pos.x);
 	while (i < sp.height && i < param->res.y * param->res.x * 4)
 	{
 		if (!((int)param->sp_text[j] == 0
@@ -56,6 +59,7 @@ void			update_wall(t_spwall sp, char *str, t_param *param)
 			pix -= sp.heat;
 		}
 	}
+//	printf("update wall ok\n");
 }
 
 void			update_col(t_param *param, t_spwall sp, char *str)
@@ -72,7 +76,6 @@ void			update_col(t_param *param, t_spwall sp, char *str)
 t_spwall		set_sprite(t_param *param, int k, t_multidouble transform, int screenx)
 {
 	t_spwall	sp;
-//	long long	width;
 
 	if ((double)param->sprites[k].dist > 0.01)
 		sp.height = ceil(64.0 * (double)param->plane.dist
@@ -80,36 +83,37 @@ t_spwall		set_sprite(t_param *param, int k, t_multidouble transform, int screenx
 	else
 		sp.height = 500000;
 	sp.width = sp.height;
-//	printf("WIDTH = %i\nHEIGHT = %lli\n", sp.width, sp.height);
 	param->sprites[k].col = screenx - (sp.width / 2);
 	param->sprites[k].maxcol = screenx + (sp.width / 2);
-/*	if (param->sprites[k].maxcol >= param->res.x)
-		param->sprites[k].maxcol = param->res.x - 1; */
-//	printf("#1 COL = %i\nLAST COL = %i\n", param->sprites[k].col, param->sprites[k].maxcol);
-//	printf("RES.X = %i\n", param->res.x);
 	sp.heat = sp.height / 64.0;
 	sp.pos.x = param->sprites[k].col;
+	printf("SP#%u || tr.y = %f || sp.wid = %i || sp.pos.x = %f || screenx = %i || sp.dist = %f\n", k, transform.y, sp.width, sp.pos.x, screenx, param->sprites[k].dist);
+	if (transform.y > 0)
+		printf("----> SPRITE IS VISIBLE\n");
 	sp.pos.y = (param->res.y - sp.height) / 2;
 	if (param->sprites[k].col < 0)
 	{
 		sp.pos.x = 0;
-		sp.offset = (64 * (sp.pos.x - param->sprites[k].col)) / sp.width;
+//		sp.offset = (64 * (sp.pos.x - param->sprites[k].col)) / sp.width;
 	}
-	else if (param->sprites[k].maxcol == param->res.x - 1)
+/*	else if (param->sprites[k].maxcol == param->res.x - 1)
 	{
 		sp.offset = 0;
-	}
-	else
+	}  */
+	else 
 		sp.offset = (64 * (sp.pos.x - param->sprites[k].col)) / sp.width;
-//	}
-//	printf("first offset = %i\n", sp.offset);
 	while (sp.pos.x++ < param->sprites[k].maxcol && sp.pos.x < param->res.x && sp.pos.x > 0)
 	{
-//		if (sp.pos.x >= 0)
-		if(transform.y > 0 && transform.y < param->distbuf[(int)sp.pos.x])
+		if(transform.y > 0 && (transform.y < param->distbuf[(int)sp.pos.x] || param->sprites[k].dist < param->distbuf[(int)sp.pos.x]))
+		{
 			update_col(param, sp, param->imgstr);
+		}
+	/*	else if (transform.y > 0)
+		{
+			printf("SP#%u -----> trans.y = %f || wall dist = %f || sp dist = %f\n", k, transform.y, param->distbuf[(int)sp.pos.x], param->sprites[k].dist);
+		} */
+		
 		sp.offset = (64 * (sp.pos.x - param->sprites[k].col)) / sp.width;
 	}
-//	printf("last offset = %i\n", sp.offset);
 	return (sp);
 }

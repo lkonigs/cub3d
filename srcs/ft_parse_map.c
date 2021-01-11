@@ -79,10 +79,8 @@ int			parse_map(char *line, t_param *param)
 
 	j = -1;
 	i = param->mapsize.y;
-//	param->tempmap[i] = NULL;
 	if (!(param->tempmap[i] = malloc(sizeof(char) * (ft_strlen(line) + 1))))
 		error(1, param);
-//	param->tempmap[i] = NULL;
 	param->tempmap[i][0] = 0;
 	while (line[++j])
 	{

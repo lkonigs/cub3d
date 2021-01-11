@@ -34,15 +34,31 @@ void		parse_configfile(int fd, t_param *param)
 		i++;
 	}
 	i = 0;
-	param->player.dir.x = cos(param->player.angle * M_PI / 180);
-	param->player.dir.y = sin(param->player.angle * M_PI / 180);
-	if ((param->player.angle == 0) || (param->player.angle == 180))
+	if ((param->player.angle == 180)) // OK
 	{
+		param->player.dir.x = cos(param->player.angle * M_PI / 180);
+		param->player.dir.y = sin(param->player.angle * M_PI / 180);
 		param->plane.vect.x = 0;
 		param->plane.vect.y = tan(30) / 10;
 	}
+	else if ((param->player.angle == 0))
+	{
+		param->player.dir.x =  cos(param->player.angle * M_PI / 180);
+		param->player.dir.y = - sin(param->player.angle * M_PI / 180);
+		param->plane.vect.x = 0;
+		param->plane.vect.y = tan(30) / 10;
+	}
+	else if (param->player.angle == 270) // OK
+	{
+		param->player.dir.x = - cos(param->player.angle * M_PI / 180);
+		param->player.dir.y = - sin(param->player.angle * M_PI / 180);
+		param->plane.vect.x = tan(30) / 10;
+		param->plane.vect.y = 0;
+	}
 	else
 	{
+		param->player.dir.x = - cos(param->player.angle * M_PI / 180);
+		param->player.dir.y = - sin(param->player.angle * M_PI / 180);
 		param->plane.vect.x = tan(30) / 10;
 		param->plane.vect.y = 0;
 	}

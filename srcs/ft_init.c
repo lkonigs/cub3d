@@ -12,6 +12,15 @@
 
 #include "../cub3d.h"
 
+void	init_param_player(t_param *param)
+{
+	param->player.angle = -1;
+	param->player.pos.x = -1;
+	param->player.pos.y = -1;
+	param->player.dir.x = 0;
+	param->player.dir.y = 0;
+}
+
 void	init_param(t_param *param)
 {
 	param->tempmap = NULL;
@@ -24,15 +33,16 @@ void	init_param(t_param *param)
 	param->fcol[0] = -1;
 	param->map = NULL;
 	param->mapsize = (t_multiint){.x = 0, .y = 0};
-	param->player.angle = -1;
-	param->player.pos.x = -1;
-	param->player.pos.y = -1;
+	param->plane.vect.x = 0;
+	param->plane.vect.y = 0;
 	param->res = (t_multiint){.x = -1, .y = -1};
 	param->screen_res = (t_multiint){.x = -1, .y = -1};
 	param->plane.angles = -1;
 	param->plane.dist = -1;
 	param->nb_sprite = 0;
 	param->win_ptr = NULL;
+	param->mlx_ptr = NULL;
+	init_param_player(param);
 	if (!(param->mlx_ptr = mlx_init()))
 		error(0, param);
 }
@@ -66,24 +76,4 @@ void	init_sprite(t_param *param, unsigned int k)
 	param->sprites[k].maxcol = -1;
 	param->sprites[k].dist = -1;
 	param->sprites[k].visible = -1;
-}
-
-t_point	init_ptv(double angle, t_point b, t_param *p, double tan)
-{
-	if (angle >= 90 && angle < 270)
-		b.pos.x = p->player.pos.x / 64 * 64 - 0.000001;
-	else
-		b.pos.x = p->player.pos.x / 64 * 64 + 64;
-	b.pos.y = p->player.pos.y + (p->player.pos.x - b.pos.x) * tan;
-	return (b);
-}
-
-t_point	init_pth(double angle, t_point a, t_param *p, double tan)
-{
-	if (angle < 180)
-		a.pos.y = p->player.pos.y / 64 * 64 - 0.000001;
-	else
-		a.pos.y = p->player.pos.y / 64 * 64 + 64;
-	a.pos.x = p->player.pos.x + (p->player.pos.y - a.pos.y) / tan;
-	return (a);
 }

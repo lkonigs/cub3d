@@ -67,32 +67,30 @@ void			update_col(t_param *param, t_spwall sp, char *str)
 	update_wall(sp, str + i, param);
 }
 
-t_spwall		set_sprite(t_param *param, int k, t_multidouble transform, long int screenx)
+t_spwall		set_sprite(t_param *p, int k, t_multidouble trsf, long int scrx)
 {
 	t_spwall	sp;
 
-	if ((double)param->sprites[k].dist > 0.01)
-		sp.height = ceil(64.0 * (double)param->plane.dist
-			/ (double)param->sprites[k].dist);
+	if ((double)p->sprites[k].dist > 0.01)
+		sp.height = ceil(64.0 * (double)p->plane.dist
+			/ (double)p->sprites[k].dist);
 	else
 		sp.height = 500000;
 	sp.width = sp.height;
-	param->sprites[k].col = screenx - (sp.width / 2);
-	param->sprites[k].maxcol = screenx + (sp.width / 2);
+	p->sprites[k].col = scrx - (sp.width / 2);
+	p->sprites[k].maxcol = scrx + (sp.width / 2);
 	sp.heat = sp.height / 64.0;
-	sp.pos.x = param->sprites[k].col;
-	sp.pos.y = (param->res.y - sp.height) / 2;
-	if (param->sprites[k].col < 0)
+	sp.pos.x = p->sprites[k].col;
+	sp.pos.y = (p->res.y - sp.height) / 2;
+	if (p->sprites[k].col < 0)
 		sp.pos.x = 0;
-	else 
-		sp.offset = (64 * (sp.pos.x - param->sprites[k].col)) / sp.width;
-	while (sp.pos.x < param->sprites[k].maxcol && sp.pos.x < param->res.x && sp.pos.x >= 0)
+	while (sp.pos.x < p->sprites[k].maxcol && sp.pos.x < p->res.x
+		&& sp.pos.x >= 0)
 	{
-		sp.offset = (64 * (sp.pos.x - param->sprites[k].col)) / sp.width;
-		if(transform.y > 0 && (transform.y < param->distbuf[(int)sp.pos.x] || param->sprites[k].dist < param->distbuf[(int)sp.pos.x]))
-		{
-			update_col(param, sp, param->imgstr);
-		}
+		sp.offset = (64 * (sp.pos.x - p->sprites[k].col)) / sp.width;
+		if (trsf.y > 0 && (trsf.y < p->distbuf[(int)sp.pos.x]
+			|| p->sprites[k].dist < p->distbuf[(int)sp.pos.x]))
+			update_col(p, sp, p->imgstr);
 		sp.pos.x++;
 	}
 	return (sp);

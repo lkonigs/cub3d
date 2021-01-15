@@ -17,7 +17,7 @@ void				sprite_set(t_param *param)
 	unsigned int	k;
 	double			inv;
 	t_multidouble	transform;
-	t_multiint	sprite;
+	t_multiint		sprite;
 	t_spwall		sp;
 
 	k = param->nb_sprite;
@@ -25,9 +25,12 @@ void				sprite_set(t_param *param)
 	{
 		sprite.x = param->sprites[k - 1].pos.x - param->player.pos.x;
 		sprite.y = param->sprites[k - 1].pos.y - param->player.pos.y;
-		inv = 1.0 / (param->plane.vect.y * param->player.dir.x - param->player.dir.y * param->plane.vect.x);
-		transform.x = inv * (param->player.dir.x * sprite.y - param->player.dir.y * sprite.x);
-		transform.y = inv * (- param->plane.vect.x * sprite.y + param->plane.vect.y * sprite.x);
+		inv = 1.0 / (param->plane.vect.y * param->player.dir.x
+			- param->player.dir.y * param->plane.vect.x);
+		transform.x = inv * (param->player.dir.x * sprite.y
+			- param->player.dir.y * sprite.x);
+		transform.y = inv * (-param->plane.vect.x * sprite.y
+			+ param->plane.vect.y * sprite.x);
 		sp.screenx = (int)(param->res.x / 2) * (1 + transform.x / transform.y);
 		set_sprite(param, k - 1, transform, sp.screenx);
 		k--;
@@ -64,14 +67,12 @@ int					create_image(t_param *param)
 	sort_sprite(param);
 	while (angle > param->player.angle - FOV / 2 && col < param->res.x)
 	{
-		tmp = set_col(param, set_wall(param, intersection(param, col, angle), col),
-			param->imgstr);
+		tmp = set_col(param, set_wall(param, intersection(param, col,
+			angle), col), param->imgstr);
 		param->distbuf[col] = tmp;
 		angle -= param->plane.angles;
 		col++;
 	}
-/*	correct_sprite(param);
-	display_sprite(param); */
 	sprite_set(param);
 	return (0);
 }

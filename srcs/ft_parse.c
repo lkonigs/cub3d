@@ -12,16 +12,34 @@
 
 #include "../cub3d.h"
 
-void		parse_configfile(int fd, t_param *param)
+void		set_dirvect(t_param *param)
 {
-	char	*line;
+	if ((param->player.angle == 180))
+	{
+		param->player.dir.x = -1;
+		param->plane.vect.y = tan(30) / 10;
+	}
+	else if ((param->player.angle == 0))
+	{
+		param->player.dir.x = 1;
+		param->plane.vect.y = -tan(30) / 10;
+	}
+	else if (param->player.angle == 270)
+	{
+		param->player.dir.y = 1;
+		param->plane.vect.x = tan(30) / 10;
+	}
+	else
+	{
+		param->player.dir.y = -1;
+		param->plane.vect.x = -tan(30) / 10;
+	}
+}
+
+void		parse_check(t_param *param)
+{
 	int		i;
 
-	while (get_next_line(fd, &line) > 0 || *line)
-		parse_free(line, param);
-	nb_sprite(param);
-	get_finalmap(param);
-	ft_sprite(param);
 	if (param->player.pos.x == -1 || param->player.pos.y == -1 ||
 		param->player.angle == -1)
 		error(10, param);
@@ -33,35 +51,19 @@ void		parse_configfile(int fd, t_param *param)
 			error(5, param);
 		i++;
 	}
-	i = 0;
-	if ((param->player.angle == 180))
-	{
-		param->player.dir.x = - 1;
-		param->player.dir.y = 0;
-		param->plane.vect.x = 0;
-		param->plane.vect.y = tan(30) / 10;
-	}
-	else if ((param->player.angle == 0))
-	{
-		param->player.dir.x = 1;
-		param->player.dir.y = 0;
-		param->plane.vect.x = 0;
-		param->plane.vect.y = - tan(30) / 10;
-	}
-	else if (param->player.angle == 270)
-	{
-		param->player.dir.x = 0;
-		param->player.dir.y = 1;
-		param->plane.vect.x = tan(30) / 10;
-		param->plane.vect.y = 0;
-	}
-	else
-	{
-		param->player.dir.x = 0;
-		param->player.dir.y = - 1;
-		param->plane.vect.x = - tan(30) / 10;
-		param->plane.vect.y = 0;
-	}
+}
+
+void		parse_configfile(int fd, t_param *param)
+{
+	char	*line;
+
+	while (get_next_line(fd, &line) > 0 || *line)
+		parse_free(line, param);
+	nb_sprite(param);
+	get_finalmap(param);
+	ft_sprite(param);
+	parse_check(param);
+	set_dirvect(param);
 }
 
 void		parse_free(char *line, t_param *param)

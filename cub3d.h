@@ -15,7 +15,7 @@
 
 # define FOV 		60
 # define PMS		4.0
-# define PTS		4
+# define PTS		2
 # define WH			64
 
 # include <fcntl.h>
@@ -116,7 +116,7 @@ typedef struct		s_spwall
 	t_multidouble	pos;
 	int				offset;
 	double			heat;
-	t_multiint		screen;
+	long int		screenx;
 	t_multiint		drawst;
 	t_multiint		drawend;
 }					t_spwall;
@@ -177,7 +177,7 @@ int					inter_sprite(t_param *param, double angle, int col, int k);
 int					inter_sp_h(t_param *p, double ang, int c, unsigned int k);
 int					inter_sp_v(t_param *p, double ang, int c, unsigned int k);
 void				update_col(t_param *param, t_spwall sp, char *str);
-t_spwall		set_sprite(t_param *param, int k, t_multidouble transform, int screenx);
+t_spwall		set_sprite(t_param *param, int k, t_multidouble transform, long int screenx);
 void				get_sprite(t_param *param, int i, int j, unsigned int k);
 void				error_more(int i);
 double				set_angle(double angle);

@@ -34,37 +34,34 @@ void		parse_configfile(int fd, t_param *param)
 		i++;
 	}
 	i = 0;
-	if ((param->player.angle == 180)) // OK
+	if ((param->player.angle == 180))
 	{
-		param->player.dir.x = cos(param->player.angle * M_PI / 180);
-		param->player.dir.y = sin(param->player.angle * M_PI / 180);
+		param->player.dir.x = - 1;
+		param->player.dir.y = 0;
 		param->plane.vect.x = 0;
 		param->plane.vect.y = tan(30) / 10;
 	}
 	else if ((param->player.angle == 0))
 	{
-		param->player.dir.x =  cos(param->player.angle * M_PI / 180);
-		param->player.dir.y = - sin(param->player.angle * M_PI / 180);
+		param->player.dir.x = 1;
+		param->player.dir.y = 0;
 		param->plane.vect.x = 0;
-		param->plane.vect.y = tan(30) / 10;
+		param->plane.vect.y = - tan(30) / 10;
 	}
-	else if (param->player.angle == 270) // OK
+	else if (param->player.angle == 270)
 	{
-		param->player.dir.x = - cos(param->player.angle * M_PI / 180);
-		param->player.dir.y = - sin(param->player.angle * M_PI / 180);
+		param->player.dir.x = 0;
+		param->player.dir.y = 1;
 		param->plane.vect.x = tan(30) / 10;
 		param->plane.vect.y = 0;
 	}
 	else
 	{
-		param->player.dir.x = - cos(param->player.angle * M_PI / 180);
-		param->player.dir.y = - sin(param->player.angle * M_PI / 180);
-		param->plane.vect.x = tan(30) / 10;
+		param->player.dir.x = 0;
+		param->player.dir.y = - 1;
+		param->plane.vect.x = - tan(30) / 10;
 		param->plane.vect.y = 0;
 	}
-/*	while (i++ < param->mapsize.y)
-		free(param->tempmap[i]);
-	free(param->tempmap);*/
 }
 
 void		parse_free(char *line, t_param *param)

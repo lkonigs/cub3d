@@ -1,0 +1,22 @@
+R 2000 1000
+
+NO ./textures/beach.xpm
+SO ./textures/beach.xpm
+WE ./textures/beach.xpm
+EA ./textures/beach.xpm
+
+S ./textures/harry.xpm
+
+
+C 79,217,253
+F 81,198,254
+
+111111111
+100000001
+100020001
+100000001
+1020W0201
+100000001
+100020001
+100000001
+111111111

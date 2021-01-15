@@ -12,8 +12,6 @@
 
 #include "../cub3d.h"
 
-#include <stdio.h>//
-
 int			deal_key(int key, void *param)
 {
 	t_param	*par;
@@ -33,7 +31,6 @@ int			deal_key(int key, void *param)
 		move(param, 3);
 	else
 		return (0);
-//	printf("move ok ________________\n");
 	upd_image(par);
 	return (0);
 }
@@ -41,78 +38,27 @@ int			deal_key(int key, void *param)
 void		turn(t_param *param, int key)
 {
 	double	temp;
-//	unsigned int	j;
 
 	if (key == 65361)
 	{
 		param->player.angle += PTS;
-/*		if (param->player.angle < 45 || param->player.angle >= 315)
-		{
-			param->player.dir.x = cos(param->player.angle * M_PI / 180);
-			param->player.dir.y = sin(param->player.angle * M_PI / 180);
-		}
-		else if (param->player.angle >= 135 && param->player.angle < 225)
-		{
-			param->player.dir.x = cos(param->player.angle * M_PI / 180);
-			param->player.dir.y = - sin(param->player.angle * M_PI / 180);
-		}
-		else if (param->player.angle >= 225 && param->player.angle < 315)
-		{
-			param->player.dir.x = cos(param->player.angle * M_PI / 180);
-			param->player.dir.y = sin(param->player.angle * M_PI / 180);
-		}
-		else
-		{
-			param->player.dir.x = - cos(param->player.angle * M_PI / 180);
-			param->player.dir.y = sin(param->player.angle * M_PI / 180);
-		} */
 		temp = param->player.dir.x;
-		param->player.dir.x = param->player.dir.x * cos(PTS) - param->player.dir.y * sin(PTS);
-		param->player.dir.y = temp * sin(PTS) + param->player.dir.y * cos(PTS);
+		param->player.dir.x = param->player.dir.x * cos(- PTS * M_PI / 180) - param->player.dir.y * sin(- PTS * M_PI / 180);
+		param->player.dir.y = temp * sin(- PTS * M_PI / 180) + param->player.dir.y * cos(- PTS * M_PI / 180);
 		temp = param->plane.vect.x;
-		param->plane.vect.x = param->plane.vect.x * cos(PTS) - param->plane.vect.y * sin(PTS);
-		param->plane.vect.y = temp * sin(PTS) + param->plane.vect.y * cos(PTS);
+		param->plane.vect.x = param->plane.vect.x * cos(- PTS * M_PI / 180) - param->plane.vect.y * sin(- PTS * M_PI / 180);
+		param->plane.vect.y = temp * sin(- PTS * M_PI / 180) + param->plane.vect.y * cos(- PTS * M_PI / 180); 
 	}
 	else if (key == 65363)
 	{
 		param->player.angle -= PTS;
-	/*	if (param->player.angle < 45 || param->player.angle >= 315)
-		{
-			param->player.dir.x = cos(param->player.angle * M_PI / 180);
-			param->player.dir.y = sin(param->player.angle * M_PI / 180);
-		}
-		else if (param->player.angle >= 135 && param->player.angle < 225)
-		{
-			param->player.dir.x = cos(param->player.angle * M_PI / 180);
-			param->player.dir.y = - sin(param->player.angle * M_PI / 180);
-		}
-		else if (param->player.angle >= 225 && param->player.angle < 315)
-		{
-			param->player.dir.x = cos(param->player.angle * M_PI / 180);
-			param->player.dir.y = sin(param->player.angle * M_PI / 180);
-		}
-		else
-		{
-			param->player.dir.x = - cos(param->player.angle * M_PI / 180);
-			param->player.dir.y = sin(param->player.angle * M_PI / 180);
-		}
-	*/	
 		temp = param->player.dir.x;
-		param->player.dir.x = param->player.dir.x * cos(-PTS) - param->player.dir.y * sin(-PTS);
-		param->player.dir.y = temp * sin(-PTS) + param->player.dir.y * cos(-PTS);
+		param->player.dir.x = param->player.dir.x * cos(PTS * M_PI / 180) - param->player.dir.y * sin(PTS * M_PI / 180);
+		param->player.dir.y = temp * sin(PTS * M_PI / 180) + param->player.dir.y * cos(PTS * M_PI / 180);
 		temp = param->plane.vect.x;
-		param->plane.vect.x = param->plane.vect.x * cos(-PTS) - param->plane.vect.y * sin(-PTS);
-		param->plane.vect.y = temp * sin(-PTS) + param->plane.vect.y * cos(-PTS);
+		param->plane.vect.x = param->plane.vect.x * cos(PTS * M_PI / 180) - param->plane.vect.y * sin(PTS * M_PI / 180);
+		param->plane.vect.y = temp * sin(PTS * M_PI / 180) + param->plane.vect.y * cos(PTS * M_PI / 180); 
 	}
-/*	j = 0;
-	while (j < param->nb_sprite)
-	{
-		param->sprites[j].dist = pow(param->player.pos.x -
-			param->sprites[j].pos.x, 2) + pow(param->player.pos.y
-			- param->sprites[j].pos.y, 2);
-		param->sprites[j].dist = sqrt(param->sprites[j].dist);
-		j++;
-	} */
 }
 
 void		move(t_param *param, int type)

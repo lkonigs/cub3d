@@ -23,12 +23,17 @@ void	init_param_player(t_param *param)
 
 void	init_param(t_param *param)
 {
+	int	i;
+
+	i = 0;
 	param->tempmap = NULL;
 	if (!(param->fcol = (int *)malloc(sizeof(int) * 3))
 		|| !(param->ccol = (int *)malloc(sizeof(int) * 3)))
 		error(1, param);
-	if (!(param->tempmap = (char **)malloc(sizeof(char *) * 100)))
+	if (!(param->tempmap = malloc(sizeof(char *) * 100)))
 		error(1, param);
+	while (i < 100)
+		param->tempmap[i++] = NULL;
 	param->ccol[0] = -1;
 	param->fcol[0] = -1;
 	param->map = NULL;

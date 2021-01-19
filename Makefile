@@ -33,7 +33,7 @@ make_libs:
 all:		$(NAME)
 
 test:		${OBJS}
-			${CC} ${CFlAGS_TEST} ${CFLAGS} -o ${NAME} ${OBJS} ./libft/libft.a ${CFLAGS_MLX} ./minilibX/libmlx.a -lm
+			${CC} ${CFLAGS} -o ${NAME} ${OBJS} ./libft/libft.a ${CFLAGS_MLX} ./minilibX/libmlx.a -lm
 
 clean:
 			$(MAKE) clean -C ./libft/

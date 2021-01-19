@@ -12,20 +12,6 @@
 
 #include "../cub3d.h"
 
-t_point			intersection(t_param *param, int col, double angle)
-{
-	double		tan_angle;
-	t_point		a;
-	t_point		b;
-
-	angle = set_angle(angle);
-	tan_angle = set_tan(angle);
-	b = inter_v(param, angle, tan_angle, col);
-	a = inter_h(param, angle, tan_angle, b);
-	a = inter_cmp(a, b, param, angle);
-	return (a);
-}
-
 t_point			inter_v(t_param *param, double angle, double t_ang, int c)
 {
 	t_point		b;
@@ -68,6 +54,20 @@ t_point			inter_h(t_param *pr, double ang, double tan, t_point b)
 		return (a);
 	}
 	return (b);
+}
+
+t_point			intersection(t_param *param, int col, double angle)
+{
+	double		tan_angle;
+	t_point		a;
+	t_point		b;
+
+	angle = set_angle(angle);
+	tan_angle = set_tan(angle);
+	b = inter_v(param, angle, tan_angle, col);
+	a = inter_h(param, angle, tan_angle, b);
+	a = inter_cmp(a, b, param, angle);
+	return (a);
 }
 
 t_point			inter_cmp(t_point a, t_point b, t_param *p, double angle)

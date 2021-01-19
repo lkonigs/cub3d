@@ -14,8 +14,8 @@
 # define CUB3D_H
 
 # define FOV 		60
-# define PMS		4.0
-# define PTS		2
+# define PMS		10.0
+# define PTS		10
 # define WH			64
 
 # include <fcntl.h>
@@ -78,6 +78,11 @@ typedef struct		s_param
 {
 	char			**tempmap;
 	char			**map;
+	void			*no_ptr; //
+	void			*so_ptr; // 
+	void			*ea_ptr; //
+	void			*we_ptr; //
+	void			*sp_ptr; //
 	char			*no_text;
 	char			*so_text;
 	char			*ea_text;
@@ -86,6 +91,7 @@ typedef struct		s_param
 	t_multiint		mapsize;
 	int				*fcol;
 	int				*ccol;
+	int				error;
 	t_multiint		res;
 	t_multiint		screen_res;
 	t_player		player;
@@ -121,11 +127,9 @@ typedef struct		s_spwall
 	t_multiint		drawend;
 }					t_spwall;
 
-int					open_configfile(int argc, char **argv, int *save);
 int					get_j(t_wall w, t_param *param, double *pix);
 int					get_rgb(int color);
 char				*set_text(t_wall w, t_param *param);
-void				set_mid(t_wall w, char *str, t_param *param);
 double				set_col(t_param *param, t_wall w, char *str);
 t_wall				set_wall(t_param *param, t_point p, int col);
 void				display(t_param *param, int save);
@@ -135,8 +139,6 @@ void				error_init(int i);
 void				error(int i, t_param *param);
 void				ft_exit(t_param *param);
 int					deal_key(int key, void *param);
-void				move(t_param *param, int type);
-void				apply_move(int max_pos, int gv_pos, int k, t_param *param);
 void				apply_text(char *str, char *text, int i, int j);
 int					deal_end(void *param);
 void				init_param(t_param *param);
@@ -146,8 +148,6 @@ t_point				init_pth(double angle, t_point a, t_param *p, double tan);
 void				init_sprite(t_param *param, unsigned int k);
 t_point				intersection(t_param *param, int col, double angle);
 double				set_tan(double angle);
-t_point				inter_v(t_param *param, double angle, double t_ang, int c);
-t_point				inter_h(t_param *param, double ang, double tan, t_point b);
 t_point				inter_cmp(t_point a, t_point b, t_param *p, double angle);
 int					get_finalmap(t_param *param);
 int					parse_map(char *line, t_param *param);
@@ -186,5 +186,6 @@ t_point				update_pointv(t_point b, double angle, double tan_angle);
 t_point				update_pointh(t_point a, double angle, double tan_angle);
 double				update_dist(t_point a, t_param *param);
 void				update_wall(t_spwall sp, char *str, t_param *param);
+int			get_next_line(int fd, char **line);
 
 #endif

@@ -45,6 +45,11 @@ void	init_param(t_param *param)
 	param->plane.angles = -1;
 	param->plane.dist = -1;
 	param->nb_sprite = 0;
+	param->no_ptr = NULL;
+	param->ea_ptr = NULL;
+	param->so_ptr = NULL;
+	param->we_ptr = NULL;
+	param->sp_ptr = NULL;
 	param->win_ptr = NULL;
 	param->mlx_ptr = NULL;
 	init_param_player(param);

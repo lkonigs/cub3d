@@ -12,23 +12,6 @@
 
 #include "../cub3d.h"
 
-int				main(int argc, char *argv[])
-{
-	t_param		*param;
-	int			fd;
-	int			save;
-
-	fd = open_configfile(argc, argv, &save);
-	if (!(param = (t_param *)malloc(sizeof(t_param) * 1)))
-		error_init(5);
-	init_param(param);
-	parse_configfile(fd, param);
-	if (fd)
-		close(fd);
-	display(param, save);
-	return (0);
-}
-
 int				open_configfile(int argc, char **argv, int *save)
 {
 	int			fd;
@@ -51,4 +34,21 @@ int				open_configfile(int argc, char **argv, int *save)
 	if ((fd = open(argv[1], O_RDONLY)) == -1)
 		error_init(4);
 	return (fd);
+}
+
+int				main(int argc, char *argv[])
+{
+	t_param		*param;
+	int			fd;
+	int			save;
+
+	fd = open_configfile(argc, argv, &save);
+	if (!(param = (t_param *)malloc(sizeof(t_param) * 1)))
+		error_init(5);
+	init_param(param);
+	parse_configfile(fd, param);
+	if (fd)
+		close(fd);
+	display(param, save);
+	return (0);
 }

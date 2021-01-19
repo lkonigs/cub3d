@@ -53,23 +53,26 @@ void		parse_check(t_param *param)
 	}
 }
 
+void		parse_free(char *line, t_param *param)
+{
+	parse_configline(line, param);
+	ft_free(line);
+}
+
 void		parse_configfile(int fd, t_param *param)
 {
 	char	*line;
 
+//	*line = NULL;
 	while (get_next_line(fd, &line) > 0 || *line)
 		parse_free(line, param);
+/*	if (*line)
+		free(line); */
 	nb_sprite(param);
 	get_finalmap(param);
 	ft_sprite(param);
 	parse_check(param);
 	set_dirvect(param);
-}
-
-void		parse_free(char *line, t_param *param)
-{
-	parse_configline(line, param);
-	free(line);
 }
 
 void		parse_configline(char *line, t_param *param)

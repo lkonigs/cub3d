@@ -37,22 +37,6 @@ void				sprite_set(t_param *param)
 	}
 }
 
-void				display(t_param *param, int save)
-{
-	param->plane.dist = (param->res.x / 2) / tan((FOV / 2) * M_PI / 180);
-	param->plane.angles = (double)FOV / (double)param->res.x;
-	if (save == 1)
-		ft_save(param, "./save/save.bmp");
-	param->win_ptr = mlx_new_window(param->mlx_ptr, param->res.x,
-		param->res.y, "Cub3D");
-	if (param->win_ptr == NULL)
-		ft_exit(param);
-	mlx_expose_hook(param->win_ptr, upd_image, (void *)param);
-	mlx_hook(param->win_ptr, 33, 0, deal_end, (void *)param);
-	mlx_hook(param->win_ptr, 2, (1L << 0), deal_key, (void *)param);
-	mlx_loop(param->mlx_ptr);
-}
-
 int					create_image(t_param *param)
 {
 	int				col;
@@ -84,4 +68,20 @@ int					upd_image(t_param *param)
 		param->imgptr, 0, 0);
 	mlx_destroy_image(param->mlx_ptr, param->imgptr);
 	return (0);
+}
+
+void				display(t_param *param, int save)
+{
+	param->plane.dist = (param->res.x / 2) / tan((FOV / 2) * M_PI / 180);
+	param->plane.angles = (double)FOV / (double)param->res.x;
+	if (save == 1)
+		ft_save(param, "./save/save.bmp");
+	param->win_ptr = mlx_new_window(param->mlx_ptr, param->res.x,
+		param->res.y, "Cub3D");
+	if (param->win_ptr == NULL)
+		ft_exit(param);
+	mlx_expose_hook(param->win_ptr, upd_image, (void *)param);
+	mlx_hook(param->win_ptr, 33, 0, deal_end, (void *)param);
+	mlx_hook(param->win_ptr, 2, (1L << 0), deal_key, (void *)param);
+	mlx_loop(param->mlx_ptr);
 }

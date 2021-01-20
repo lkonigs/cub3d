@@ -53,6 +53,28 @@ void		parse_check(t_param *param)
 	}
 }
 
+void		parse_configline(char *line, t_param *param)
+{
+	int		i;
+
+	i = 0;
+	while (line[i] == ' ')
+		i++;
+	if (line[i] == 'R' && parse_res(line + i, param) == -1)
+		error(2, param);
+	else if (line[i] == 'F' || line[i] == 'C')
+		parse_col(line + i, param);
+	else if (((line[i] == 'N' && line[i + 1] == 'O')
+				|| (line[i] == 'S' && line[i + 1] == 'O')
+				|| (line[i] == 'W' && line[i + 1] == 'E')
+				|| (line[i] == 'E' && line[i + 1] == 'A')
+				|| (line[i] == 'S' && line[i + 1] == ' '))
+				&& parse_text(line, param) == -1)
+		error(7, param);
+	else if (line[i] == '1' && parse_map(line, param) == -1)
+		error(8, param);
+}
+
 void		parse_free(char *line, t_param *param)
 {
 	parse_configline(line, param);
@@ -74,26 +96,4 @@ void		parse_configfile(int fd, t_param *param)
 	ft_sprite(param);
 	parse_check(param);
 	set_dirvect(param);
-}
-
-void		parse_configline(char *line, t_param *param)
-{
-	int		i;
-
-	i = 0;
-	while (line[i] == ' ')
-		i++;
-	if (line[i] == 'R' && parse_res(line + i, param) == -1)
-		error(2, param);
-	else if (line[i] == 'F' || line[i] == 'C')
-		parse_col(line + i, param);
-	else if (((line[i] == 'N' && line[i + 1] == 'O')
-				|| (line[i] == 'S' && line[i + 1] == 'O')
-				|| (line[i] == 'W' && line[i + 1] == 'E')
-				|| (line[i] == 'E' && line[i + 1] == 'A')
-				|| (line[i] == 'S' && line[i + 1] == ' '))
-				&& parse_text(line, param) == -1)
-		error(7, param);
-	else if (line[i] == '1' && parse_map(line, param) == -1)
-		error(8, param);
 }

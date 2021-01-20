@@ -30,6 +30,20 @@ void	error_init(int i)
 	exit(0);
 }
 
+void	error_more(int i)
+{
+	if (i == 10)
+		ft_putstr("Missing values in the config file\n");
+	else if (i == 11)
+		ft_putstr("Error creating the window with mlx\n");
+	else if (i == 12)
+		ft_putstr("Could not reach a proper wall intersection\n");
+	else if (i == 13)
+		ft_putstr("Error in opening .xpm file\n");
+	else if (i == 14)
+		ft_putstr("Wrong number of sprites\n");
+}
+
 void	error(int i, t_param *param)
 {
 	ft_putstr("Error\n");
@@ -56,20 +70,6 @@ void	error(int i, t_param *param)
 	else if (i >= 10)
 		error_more(i);
 	ft_exit(param);
-}
-
-void	error_more(int i)
-{
-	if (i == 10)
-		ft_putstr("Missing values in the config file\n");
-	else if (i == 11)
-		ft_putstr("Error creating the window with mlx\n");
-	else if (i == 12)
-		ft_putstr("Could not reach a proper wall intersection\n");
-	else if (i == 13)
-		ft_putstr("Error in opening .xpm file\n");
-	else if (i == 14)
-		ft_putstr("Wrong number of sprites\n");
 }
 
 void	ft_exit_mlx(t_param *param)

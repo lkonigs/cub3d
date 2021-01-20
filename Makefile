@@ -2,6 +2,8 @@ SRCS		=	srcs/ft_cub3d.c \
 				srcs/ft_error.c \
 				srcs/ft_init.c \
 				srcs/ft_parse.c \
+				srcs/ft_parse_text.c \
+				srcs/ft_parse_map.c \
 				srcs/ft_parse_others.c \
 				srcs/ft_setwall.c \
 				srcs/ft_setwall_tools.c \
@@ -9,7 +11,6 @@ SRCS		=	srcs/ft_cub3d.c \
 				srcs/ft_event.c \
 				srcs/ft_event_turn.c \
 				srcs/ft_intersection.c \
-				srcs/ft_parse_map.c \
 				srcs/ft_sprite.c \
 				srcs/ft_sprite_sort.c \
 				srcs/ft_intersection_tools.c \

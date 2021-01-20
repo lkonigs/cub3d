@@ -39,7 +39,6 @@ int		ft_atoi(const char *str)
 	return (nb * flag);
 }
 
-
 int		ft_atoi_increment(const char *str, int *i)
 {
 	unsigned long	nb;

@@ -24,9 +24,9 @@ int				ft_strlen(const char *s)
 	return (i);
 }
 
-size_t				ft_intlen(int nbr)
+size_t			ft_intlen(int nbr)
 {
-	int int_len;
+	int			int_len;
 
 	int_len = 0;
 	if (nbr < 0)

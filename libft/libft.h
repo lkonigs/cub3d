@@ -20,7 +20,7 @@
 # define BUFFER_SIZE 50
 
 int			ft_atoi(const char *str);
-int	    	ft_atoi_increment(const char *str, int *i);
+int			ft_atoi_increment(const char *str, int *i);
 void		ft_bzero(void *s, size_t n);
 void		*ft_calloc(size_t nmemb, size_t size);
 int			ft_isalnum(int c);
@@ -40,7 +40,7 @@ void		ft_putchar(char c);
 void		ft_putendl_fd(char *s, int fd);
 void		ft_putnbr_fd(int n, int fd);
 void		ft_putstr_fd(char *s, int fd);
-void    	ft_putstr(char *s);
+void		ft_putstr(char *s);
 char		*ft_strchr(const char *s, int c);
 size_t		ft_strlcat(char *dest, const char *src, size_t size);
 size_t		ft_strlcpy(char *dest, const char *src, size_t size);
@@ -53,7 +53,7 @@ char		*ft_strtrim(char const *s1, char const *set);
 int			ft_tolower(int c);
 int			ft_toupper(int c);
 int			get_next_line(int fd, char **line);
-int 		ft_strlen(const char *s);
+int			ft_strlen(const char *s);
 size_t		ft_intlen(int nbr);
 char		*ft_strjoin(char const *s1, char const *s2);
 char		*ft_strdup(const char *s);
@@ -63,6 +63,6 @@ int			endline(char *alreadyread);
 char		*fillread(int moretoread, char *buf, char *alreadyread);
 char		*emptyread(char **line, char *alreadyread, int len);
 int			erreur(char *alreadyread);
-int	ft_strcmp(const char *s1, const char *s2);
+int			ft_strcmp(const char *s1, const char *s2);
 
 #endif

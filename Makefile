@@ -24,7 +24,7 @@ CC			=	gcc
 CFLAGS		=	-Wall -Wextra -Werror -g
 CFLAGS_MLX	=	-lmlx -L ./minilibX/ -lXext -lX11
 CFLAGS_TEST	=	-g3 -fsanitize=address
-NAME		=	Cub3D
+NAME		=	cub3D
 
 $(NAME):	make_libs test
 

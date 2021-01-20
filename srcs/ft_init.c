@@ -19,6 +19,14 @@ void	init_param_player(t_param *param)
 	param->player.pos.y = -1;
 	param->player.dir.x = 0;
 	param->player.dir.y = 0;
+	param->plane.angles = -1;
+	param->plane.dist = -1;
+	param->plane.vect.x = 0;
+	param->plane.vect.y = 0;
+	param->mapsize = (t_multiint){.x = 0, .y = 0};
+	param->res = (t_multiint){.x = -1, .y = -1};
+	param->screen_res = (t_multiint){.x = -1, .y = -1};
+	param->nb_sprite = 0;
 }
 
 void	init_param(t_param *param)
@@ -37,14 +45,6 @@ void	init_param(t_param *param)
 	param->ccol[0] = -1;
 	param->fcol[0] = -1;
 	param->map = NULL;
-	param->mapsize = (t_multiint){.x = 0, .y = 0};
-	param->plane.vect.x = 0;
-	param->plane.vect.y = 0;
-	param->res = (t_multiint){.x = -1, .y = -1};
-	param->screen_res = (t_multiint){.x = -1, .y = -1};
-	param->plane.angles = -1;
-	param->plane.dist = -1;
-	param->nb_sprite = 0;
 	param->no_ptr = NULL;
 	param->ea_ptr = NULL;
 	param->so_ptr = NULL;

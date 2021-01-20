@@ -96,14 +96,12 @@ void			get_text(t_param *param, char *line)
 	if (line[0] == 'N' && line[1] == 'O')
 	{
 	//	param->no_text = text;
-		ft_putchar('N');
 		if (!(param->no_ptr = mlx_xpm_file_to_image(param->mlx_ptr, line + i, &u, &u)))
 			error(6, param);
 		param->no_text = mlx_get_data_addr(param->no_ptr, &u, &u, &u);
 	}
 	else if (line[0] == 'S' && line[1] == 'O')
 	{
-		ft_putchar('S');
 		if (!(param->so_ptr = mlx_xpm_file_to_image(param->mlx_ptr, line + i, &u, &u)))
 			error(6, param);
 		param->so_text = mlx_get_data_addr(param->so_ptr, &u, &u, &u);

@@ -12,6 +12,8 @@
 
 #include "../cub3d.h"
 
+#include <stdio.h>//
+
 void		set_dirvect(t_param *param)
 {
 	if ((param->player.angle == 180))
@@ -62,12 +64,13 @@ void		parse_free(char *line, t_param *param)
 void		parse_configfile(int fd, t_param *param)
 {
 	char	*line;
+	int		res;
 
-//	*line = NULL;
-	while (get_next_line(fd, &line) > 0 || *line)
+	res = 0;
+	while ((res = get_next_line(fd, &line)) > 0)
 		parse_free(line, param);
-/*	if (*line)
-		free(line); */
+	if (*line)
+		parse_free(line, param);
 	nb_sprite(param);
 	get_finalmap(param);
 	ft_sprite(param);

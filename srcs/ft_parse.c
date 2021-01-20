@@ -12,8 +12,6 @@
 
 #include "../cub3d.h"
 
-#include <stdio.h>//
-
 void		set_dirvect(t_param *param)
 {
 	if ((param->player.angle == 180))

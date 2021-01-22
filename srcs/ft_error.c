@@ -74,6 +74,8 @@ void	error(int i, t_param *param)
 
 void	ft_exit_mlx(t_param *param)
 {
+	if (param->imgptr)
+		mlx_destroy_image(param->mlx_ptr, param->imgptr);
 	if (param->no_ptr)
 		mlx_destroy_image(param->mlx_ptr, param->no_ptr);
 	if (param->so_ptr)

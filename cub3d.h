@@ -15,7 +15,7 @@
 
 # define FOV 		60
 # define PMS		10.0
-# define PTS		10
+# define PTS		90	
 # define WH			64
 
 # include <fcntl.h>
@@ -23,6 +23,8 @@
 # include <math.h>
 # include "libft/libft.h"
 # include "minilibX/mlx.h"
+
+#include <stdio.h> // !!!!!
 
 typedef struct		s_multiint
 {

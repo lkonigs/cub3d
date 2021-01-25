@@ -50,12 +50,9 @@ void				sprite_set(t_param *param)
 int					create_image(t_param *param)
 {
 	int				col;
-//	int				u;
 	double			angle;
 	double			tmp;
 
-//	param->imgptr = mlx_new_image(param->mlx_ptr, param->res.x, param->res.y);
-//	param->imgstr = mlx_get_data_addr(param->imgptr, &u, &u, &u);
 	angle = param->player.angle + FOV / 2;
 	col = 0;
 	sort_sprite(param);

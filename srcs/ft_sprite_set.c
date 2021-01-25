@@ -88,9 +88,9 @@ t_spwall		set_sprite(t_param *p, int k, t_multidouble trsf, long int scrx)
 		&& sp.pos.x >= 0)
 	{
 		sp.offset = (64 * (sp.pos.x - p->sprites[k].col)) / sp.width;
-		if (trsf.y > 0 && (trsf.y < p->distbuf[(int)sp.pos.x]
+		if (trsf.y > 0.000000000001 && (trsf.y < p->distbuf[(int)sp.pos.x]
 			|| p->sprites[k].dist < p->distbuf[(int)sp.pos.x]))
-			update_col(p, sp, p->imgstr);
+				update_col(p, sp, p->imgstr);
 		sp.pos.x++;
 	}
 	return (sp);

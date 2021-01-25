@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lkonig <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: lkonig <lkonig@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/27 15:26:59 by lkonig            #+#    #+#             */
 /*   Updated: 2020/10/27 15:27:18 by lkonig           ###   ########.fr       */
@@ -15,7 +15,7 @@
 
 # define FOV 		60
 # define PMS		10.0
-# define PTS		90	
+# define PTS		10
 # define WH			64
 
 # include <fcntl.h>
@@ -23,8 +23,6 @@
 # include <math.h>
 # include "libft/libft.h"
 # include "minilibX/mlx.h"
-
-#include <stdio.h> // !!!!!
 
 typedef struct		s_multiint
 {
@@ -198,5 +196,7 @@ void				ft_switch(t_param *param, int k, int n);
 void				nb_sprite(t_param *param);
 void				get_sprite(t_param *param, int i, int j, unsigned int k);
 void				ft_sprite(t_param *param);
+int					check_proximity_x(int max_pos, int gv_pos, t_param *param);
+int					check_proximity_y(int max_pos, int gv_pos, t_param *param);
 
 #endif

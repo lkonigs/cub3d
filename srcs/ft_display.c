@@ -25,22 +25,12 @@ void				sprite_set(t_param *param)
 	{
 		sprite.x = param->sprites[k - 1].pos.x - param->player.pos.x;
 		sprite.y = param->sprites[k - 1].pos.y - param->player.pos.y;
-
-	/*	// FONCTIONNE BIEN SAUF SUR MAP3 :
-		inv = 1.0 / (param->plane.vect.y * param->player.dir.x
-			- param->player.dir.y * param->plane.vect.x);
-		transform.x = inv * (param->player.dir.x * sprite.y
-			- param->player.dir.y * sprite.x);
-		transform.y = inv * (-param->plane.vect.x * sprite.y
-			+ param->plane.vect.y * sprite.x); 
-		sp.screenx = (int)(param->res.x / 2) * (1 + transform.x / transform.y); */
-
 		inv = 1.0 / (param->plane.vect.x * param->player.dir.y
 			- param->player.dir.x * param->plane.vect.y);
 		transform.x = inv * (param->player.dir.y * sprite.x
 			- param->player.dir.x * sprite.y);
 		transform.y = inv * (-param->plane.vect.y * sprite.x
-			+ param->plane.vect.x * sprite.y); 
+			+ param->plane.vect.x * sprite.y);
 		sp.screenx = (int)(param->res.x / 2) * (1 + transform.x / transform.y);
 		set_sprite(param, k - 1, transform, sp.screenx);
 		k--;
@@ -73,7 +63,6 @@ int					upd_image(t_param *param)
 	create_image(param);
 	mlx_put_image_to_window(param->mlx_ptr, param->win_ptr,
 		param->imgptr, 0, 0);
-//	mlx_destroy_image(param->mlx_ptr, param->imgptr);
 	return (0);
 }
 

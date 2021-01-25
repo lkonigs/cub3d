@@ -1,9 +1,9 @@
 R 900 600
 
-NO ./textures/texture_wood.xpm
-SO ./textures/texture_metal.xpm
-WE ./textures/beach.xpm
-EA ./textures/beach.xpm
+NO ./textures/t_wood.xpm
+SO ./textures/t_metal.xpm
+WE ./textures/t_beach.xpm
+EA ./textures/t_beach.xpm
 
 S ./minilibX/test/open30.xpm
 
@@ -13,10 +13,10 @@ F 69,99,56
 
 1111111111111111
 1000000000000001
-10E0000000000001
+10E0000200000001
 1000000200000011
 1000000000011111
 1000000000000001
-1000000000200001
+1000000000000001
 1000000000000001
 1111111111111111

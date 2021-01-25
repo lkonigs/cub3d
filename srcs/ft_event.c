@@ -18,22 +18,12 @@ void		apply_move(int max_pos, int gv_pos, int k, t_param *param)
 
 	if (k == 0)
 	{
-		if (((param->map[gv_pos][max_pos] != '1') &&
-			(param->map[gv_pos][max_pos] != '2'))
-			&& ((param->map[gv_pos][max_pos + 20] != '1') &&
-			(param->map[gv_pos][max_pos + 20] != '2'))
-			&& ((param->map[gv_pos][max_pos - 20] != '1') &&
-			(param->map[gv_pos][max_pos - 20] != '2')))
+		if (check_proximity_x(max_pos, gv_pos, param))
 			param->player.pos.x = max_pos;
 	}
 	else if (k == 1)
 	{
-		if (((param->map[max_pos][gv_pos] != '1') &&
-			(param->map[max_pos][gv_pos] != '2'))
-			&& ((param->map[max_pos + 20][gv_pos] != '1') &&
-			(param->map[max_pos + 20][gv_pos] != '2'))
-			&& ((param->map[max_pos - 20][gv_pos] != '1') &&
-			(param->map[max_pos - 20][gv_pos] != '2')))
+		if (check_proximity_y(max_pos, gv_pos, param))
 			param->player.pos.y = max_pos;
 	}
 	j = 0;

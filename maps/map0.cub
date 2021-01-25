@@ -1,11 +1,11 @@
 R 2000 1000
 
-NO ./textures/beach.xpm
-SO ./textures/beach.xpm
-WE ./textures/beach.xpm
-EA ./textures/beach.xpm
+NO ./textures/t_beach.xpm
+SO ./textures/t_beach.xpm
+WE ./textures/t_beach.xpm
+EA ./textures/t_beach.xpm
 
-S ./textures/harry.xpm
+S ./textures/sp_1.xpm
 
 
 C 79,217,253
@@ -13,12 +13,12 @@ F 81,198,254
 
 111111111111
 100000000001
-102000000001
-102002000001
-100000010001
+100020000001
+100020000001
+100020010001
+100020000001
+1002000000W1
 100000000001
-1000000000W1
-100200000001
 100000000001
 100000000001
 100000000001

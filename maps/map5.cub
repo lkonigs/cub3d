@@ -1,26 +1,16 @@
-R 2000 1000
+R 9900 9600
 
-NO ./textures/texture_wood.xpm
-SO ./textures/texture_wood.xpm
-WE ./textures/texture_wood.xpm
-EA ./textures/texture_wood.xpm
+NO ./textures/t_wood.xpm
+SO ./textures/t_metal.xpm
+WE ./textures/t_stone.xpm
+EA ./textures/t_stone.xpm
+S ./textures/sp_1.xpm
 
-S ./textures/new.xpm
+C 80,180,255
+F 69,99,56
 
-
-C 79,217,253
-F 81,198,254
-
-1111111111111
-1000000000001
-1000002000001
-1000000000001
-1000000000001
-1000000000001
-102000N000201
-1000000000001
-1000000000001
-1000000000001
-1000002000001
-1000000000001
-1111111111111
+111111
+100101
+102001
+1100N1
+111111

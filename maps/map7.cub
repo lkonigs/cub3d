@@ -1,10 +1,10 @@
 R 600 500
 
-NO ./textures/new.xpm
-SO ./textures/texture_metal.xpm
-EA ./textures/texture_wood.xpm
-WE ./textures/texture_stone.xpm
-S ./textures/end.xpm
+NO ./textures/t_purple.xpm
+SO ./textures/t_metal.xpm
+EA ./textures/t_wood.xpm
+WE ./textures/t_stone.xpm
+S ./textures/sp_0.xpm
 
 F 200,100,0
 C 0,100,200

@@ -5,7 +5,7 @@ SO ./textures/t_metal.xpm
 WE ./textures/t_stone.xpm
 EA ./textures/t_wood.xpm
 
-S ./textures/sp_2.xpm
+S ./textures/sp_3.xpm
 F 200,100,0
 C 0,100,200
 

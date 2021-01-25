@@ -1,10 +1,10 @@
 R 1000 1000
 
-NO ./textures/texture_bricks.xpm
-SO ./textures/texture_metal.xpm
-WE ./textures/texture_metal.xpm
-EA ./textures/texture_wood.xpm
-S ./textures/end.xpm
+NO ./textures/t_bricks.xpm
+SO ./textures/t_metal.xpm
+WE ./textures/t_metal.xpm
+EA ./textures/t_wood.xpm
+S ./textures/sp_0.xpm
 
 F 
 C 0,100,200

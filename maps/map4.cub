@@ -1,10 +1,10 @@
 R 4600 3900
 
-NO ./textures/texture_wood.xpm
-SO ./textures/texture_metal.xpm
-WE ./textures/texture_stone.xpm
-EA ./textures/texture_wood.xpm
-S ./textures/end.xpm
+NO ./textures/t_wood.xpm
+SO ./textures/t_metal.xpm
+WE ./textures/t_stone.xpm
+EA ./textures/t_wood.xpm
+S ./textures/sp_1.xpm
 
 C 200,100,200
 F 200,100,0

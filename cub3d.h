@@ -17,6 +17,7 @@
 # define PMS		10.0
 # define PTS		10
 # define WH			64
+# define PR			20
 
 # include <fcntl.h>
 # include <stdlib.h>

@@ -73,24 +73,30 @@ int		check_inter_sp(t_point b, t_param *param, unsigned int k)
 
 int		check_proximity_x(int max_pos, int gv_pos, t_param *param)
 {
-	if (((param->map[gv_pos][max_pos] != '1') &&
+	if ((param->map[gv_pos][max_pos] != '1') &&
 			(param->map[gv_pos][max_pos] != '2'))
-			&& ((param->map[gv_pos][max_pos + 20] != '1') &&
-			(param->map[gv_pos][max_pos + 20] != '2'))
-			&& ((param->map[gv_pos][max_pos - 20] != '1') &&
-			(param->map[gv_pos][max_pos - 20] != '2')))
-		return (1);
+	{
+		if (param->player.pos.x < max_pos && (param->map[gv_pos][max_pos + PR] != '1') &&
+			(param->map[gv_pos][max_pos + PR] != '2'))
+			return (1);
+		if (param->player.pos.x > max_pos && (param->map[gv_pos][max_pos - PR] != '1') &&
+			(param->map[gv_pos][max_pos - PR] != '2'))
+			return (1);
+	}
 	return (0);
 }
 
 int		check_proximity_y(int max_pos, int gv_pos, t_param *param)
 {
-	if (((param->map[max_pos][gv_pos] != '1') &&
+	if ((param->map[max_pos][gv_pos] != '1') &&
 			(param->map[max_pos][gv_pos] != '2'))
-			&& ((param->map[max_pos + 20][gv_pos] != '1') &&
-			(param->map[max_pos + 20][gv_pos] != '2'))
-			&& ((param->map[max_pos - 20][gv_pos] != '1') &&
-			(param->map[max_pos - 20][gv_pos] != '2')))
-		return (1);
+	{
+		if (param->player.pos.y < max_pos && (param->map[max_pos + PR][gv_pos] != '1') &&
+			(param->map[max_pos + PR][gv_pos] != '2'))
+			return (1);
+		if (param->player.pos.y > max_pos && ((param->map[max_pos - PR][gv_pos] != '1') &&
+			(param->map[max_pos - PR][gv_pos] != '2')))
+			return (1);
+	}
 	return (0);
 }

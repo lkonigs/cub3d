@@ -25,6 +25,7 @@ void	init_param_player(t_param *param)
 	param->plane.vect.y = 0;
 	param->mapsize = (t_multiint){.x = 0, .y = 0};
 	param->res = (t_multiint){.x = -1, .y = -1};
+	param->save_res = (t_multiint){.x = -1, .y = -1};
 	param->screen_res = (t_multiint){.x = -1, .y = -1};
 	param->nb_sprite = 0;
 }
@@ -42,14 +43,23 @@ void	init_param(t_param *param)
 		error(1, param);
 	while (i < 100)
 		param->tempmap[i++] = NULL;
-	param->ccol[0] = -1;
-	param->fcol[0] = -1;
+	i = 0;
+	while (i < 3)
+	{
+		param->ccol[i] = 500;
+		param->fcol[i] = 500;
+		i++;
+	}
 	param->map = NULL;
+	param->nbparam = 0;
+	param->startmap = -1;
+	param->endmap = -1;
 	param->no_ptr = NULL;
 	param->ea_ptr = NULL;
 	param->so_ptr = NULL;
 	param->we_ptr = NULL;
 	param->sp_ptr = NULL;
+	param->imgptr = NULL;
 	param->win_ptr = NULL;
 	param->mlx_ptr = NULL;
 	init_param_player(param);

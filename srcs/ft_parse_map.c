@@ -63,12 +63,17 @@ void		apply_line(int i, int j, t_param *param, char *line)
 	int		k;
 
 	k = -1;
+	param->endmap = 1;
 	while (line[++k])
 	{
 		param->tempmap[i][++j] = line[k];
+		if (param->startmap == -1 || line[k] == '0')
+			param->endmap = -1;
 		if (line[k] == '0' || line[k] >= 'A')
 			check_map(param, i, j, 0);
 	}
+	if (param->startmap == -1)
+		param->startmap = 1;
 	param->tempmap[i++][++j] = 0;
 }
 

@@ -40,6 +40,12 @@ void		parse_check(t_param *param)
 {
 	int		i;
 
+	if (param->startmap == -1)
+		error(6, param);
+	if (param->res.x == -1 || param->res.y == -1)
+		error(3, param);
+	if (!param->no_ptr || !param->so_ptr || !param->ea_ptr || !param->we_ptr || !param->sp_ptr)
+		error(2, param);
 	if (param->player.pos.x == -1 || param->player.pos.y == -1 ||
 		param->player.angle == -1)
 		error(10, param);
@@ -51,46 +57,72 @@ void		parse_check(t_param *param)
 			error(5, param);
 		i++;
 	}
+	if (param->nbparam != 8)
+		error(4, param);
 }
 
-void		parse_configline(char *line, t_param *param)
+int		parse_configline(char *line, t_param *param)
 {
 	int		i;
 
 	i = 0;
 	while (line[i] == ' ')
 		i++;
-	if (line[i] == 'R' && parse_res(line + i, param) == -1)
-		error(2, param);
-	else if (line[i] == 'F' || line[i] == 'C')
-		parse_col(line + i, param);
-	else if (((line[i] == 'N' && line[i + 1] == 'O')
-				|| (line[i] == 'S' && line[i + 1] == 'O')
-				|| (line[i] == 'W' && line[i + 1] == 'E')
-				|| (line[i] == 'E' && line[i + 1] == 'A')
-				|| (line[i] == 'S' && line[i + 1] == ' '))
-				&& parse_text(line, param) == -1)
-		error(7, param);
-	else if (line[i] == '1' && parse_map(line, param) == -1)
-		error(8, param);
+	if (param->endmap == 1)
+		return (1);
+	if (param->startmap == -1)
+	{
+		if (line[i] == 'R' && parse_res(line, param) == -1)
+			return (3);
+		else if (line[i] == 'F' || line[i] == 'C')
+		{
+			if (parse_col(line + i, param) == -1)
+				return (2);
+			param->nbparam++;
+		}
+		else if (((line[i] == 'N' && line[i + 1] == 'O')
+					|| (line[i] == 'S' && line[i + 1] == 'O')
+					|| (line[i] == 'W' && line[i + 1] == 'E')
+					|| (line[i] == 'E' && line[i + 1] == 'A')
+					|| (line[i] == 'S' && line[i + 1] == ' '))
+					&& parse_text(line, param) == -1)
+			return (7);
+	}
+	if (param->endmap == -1 && line[i] == '1')
+	{
+		if (parse_map(line, param) == -1)
+			return (8);
+	}
+	return (0);
+//	ft_free(line);
 }
 
-void		parse_free(char *line, t_param *param)
+int		parse_free(char *line, t_param *param)
 {
-	parse_configline(line, param);
+	int	k;
+
+	k = 0;
+	k = parse_configline(line, param);
 	ft_free(line);
+	return (k);
 }
 
 void		parse_configfile(int fd, t_param *param)
 {
 	char	*line;
 	int		res;
+	int		k;
 
 	res = 0;
 	while ((res = get_next_line(fd, &line)) > 0)
-		parse_free(line, param);
+	{
+		k = parse_free(line, param);
+		if (k > 0)
+			error_parse(k, param);//, line);
+	}
 	if (*line)
 		parse_free(line, param);
+//	ft_putstr("heho\n");
 	nb_sprite(param);
 	get_finalmap(param);
 	ft_sprite(param);

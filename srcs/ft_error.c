@@ -12,6 +12,8 @@
 
 #include "../cub3d.h"
 
+#include <stdio.h> //
+
 void	error_init(int i)
 {
 	ft_putstr("Error\n");
@@ -33,38 +35,54 @@ void	error_init(int i)
 void	error_more(int i)
 {
 	if (i == 10)
-		ft_putstr("Missing values in the config file\n");
+		ft_putstr("Player: no player detected on the map\n");
 	else if (i == 11)
 		ft_putstr("Error creating the window with mlx\n");
 	else if (i == 12)
 		ft_putstr("Could not reach a proper wall intersection\n");
-	else if (i == 13)
-		ft_putstr("Error in opening .xpm file\n");
 	else if (i == 14)
 		ft_putstr("Wrong number of sprites\n");
 }
+
+void	error_parse(int i, t_param *param)//, char *line)
+{
+	ft_putstr ("Error\n");
+	if (i == 1)
+		ft_putstr("Config file does not end with the last map line\n");
+	else if (i == 2)
+		ft_putstr("F/C: wrong format\n");
+	else if (i == 6)
+		ft_putstr("Texture: error while turning xpm file into mlx image\n");
+	else if (i == 13)
+		ft_putstr("Texture: could not open .xpm file\n");
+	else if (i == 3)
+		ft_putstr("Resolution: wrong format or values (maybe too low)\n");
+	else if (i == 7)
+		ft_putstr("Texture: invalid path or file\n");
+	else if (i == 8)
+		ft_putstr("Wrong map values\n");
+	ft_exit(param);
+} 
 
 void	error(int i, t_param *param)
 {
 	ft_putstr("Error\n");
 	if (i == 0)
-		ft_putstr("Could not connect to the mlx (mlx_init)\n");
+		ft_putstr("MLX: mlx_init failed\n");
 	else if (i == 1)
 		ft_putstr("Error while allocating memory\n");
 	else if (i == 2)
-		ft_putstr("Wrong parameter in the .cub file (R)\n");
+		ft_putstr("Texture: a texture is missing\n");
 	else if (i == 3)
-		ft_putstr("Resolution is too low\n");
+		ft_putstr("R: wrong or missing resolution values in the config file\n");
 	else if (i == 4)
-		ft_putstr("Wrong parameter in the .cub file (F or C)\n");
+		ft_putstr("Wrong number or disposition of parameters given in the .cub file\n");
 	else if (i == 5)
-		ft_putstr("Wrong color values for F or C\n");
+		ft_putstr("F/C: wrong or missing color values in the config file\n");
 	else if (i == 6)
-		ft_putstr("Error while turning xpm file into mlx image\n");
-	else if (i == 7)
-		ft_putstr("Wrong parameter in the .cub file (texture)\n");
+		ft_putstr("Map: missing map\n");	
 	else if (i == 8)
-		ft_putstr("Wrong map values\n");
+		ft_putstr("Map: map is open or invalid\n");
 	else if (i == 9)
 		ft_putstr("Wrong direction or number of players in the config file\n");
 	else if (i >= 10)
@@ -102,12 +120,16 @@ void	ft_exit(t_param *param)
 		free(param->tempmap[i]);
 	free(param->tempmap);
 	i = 0;
-	while (i < param->mapsize.y * 64)
-		free(param->map[i++]);
+	if (param->map)
+	{
+		while (i < param->mapsize.y * 64)
+			free(param->map[i++]);
+	}
 	free(param->map);
 	free(param->fcol);
 	free(param->ccol);
-	ft_exit_mlx(param);
+	if (param->mlx_ptr)
+		ft_exit_mlx(param);
 	free(param);
 	exit(0);
 }

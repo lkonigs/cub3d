@@ -12,80 +12,98 @@
 
 #include "../cub3d.h"
 
-void			parse_text_sp(t_param *param, char *line, int i)
+int			parse_text_sp(t_param *param, char *line, char a, char b)
 {
 	int			u;
+	int			i;
 
-	if (line[0] == 'S' && line[1] == ' ')
+	i = 2;
+	while (line[i] == ' ' || line[i] == a || line[i] == b)
+		i++;
+	if (a == 'S' && b == ' ' && !param->sp_ptr)
 	{
-		i = 2;
 		if (!(param->sp_ptr = mlx_xpm_file_to_image(param->mlx_ptr,
 			line + i, &u, &u)))
-			error(6, param);
+			return (-1);
 		param->sp_text = mlx_get_data_addr(param->sp_ptr, &u, &u, &u);
 	}
+	return (0);
 }
 
-void			parse_text_ea_we(t_param *param, char *line, int i)
+int			parse_text_ea_we(t_param *param, char *line, char a, char b)
 {
 	int			u;
+	int			i;
 
-	if (line[0] == 'E' && line[1] == 'A')
+	i = 2;
+	while (line[i] == ' ' || line[i] == a || line[i] == b)
+		i++;
+	if (a == 'E' && b == 'A' && !param->ea_ptr)
 	{
 		if (!(param->ea_ptr = mlx_xpm_file_to_image(param->mlx_ptr,
 			line + i, &u, &u)))
-			error(6, param);
+			return (-1);
 		param->ea_text = mlx_get_data_addr(param->ea_ptr, &u, &u, &u);
 	}
-	else if (line[0] == 'W' && line[1] == 'E')
+	else if (a == 'W' && b == 'E' && !param->we_ptr)
 	{
 		if (!(param->we_ptr = mlx_xpm_file_to_image(param->mlx_ptr,
 			line + i, &u, &u)))
-			error(6, param);
+			return (-1);
 		param->we_text = mlx_get_data_addr(param->we_ptr, &u, &u, &u);
 	}
 	else
-		parse_text_sp(param, line, i);
+		return (parse_text_sp(param, line, a, b));
+	return (0);
 }
 
-void			parse_text_no_so(t_param *param, char *line)
+int			parse_text_no_so(t_param *param, char *line, char a, char b)
 {
 	int			i;
+//	int			j;
 	int			u;
 
-	i = 3;
-	while (line[i] == ' ')
+	i = 2;
+	while (line[i] == ' ' || line[i] == a || line[i] == b)
 		i++;
-	if (line[0] == 'N' && line[1] == 'O')
+	if (a == 'N' && b == 'O' && !param->no_ptr)
 	{
 		if (!(param->no_ptr = mlx_xpm_file_to_image(param->mlx_ptr,
 			line + i, &u, &u)))
-			error(6, param);
+			return (-1);
 		param->no_text = mlx_get_data_addr(param->no_ptr, &u, &u, &u);
 	}
-	else if (line[0] == 'S' && line[1] == 'O')
+	else if (a == 'S' && b == 'O' &&!param->so_ptr)
 	{
 		if (!(param->so_ptr = mlx_xpm_file_to_image(param->mlx_ptr,
 			line + i, &u, &u)))
-			error(6, param);
+			return (-1);
 		param->so_text = mlx_get_data_addr(param->so_ptr, &u, &u, &u);
 	}
 	else
-		parse_text_ea_we(param, line, i);
+		return (parse_text_ea_we(param, line, a, b));
+	return (0);
 }
 
 int				parse_text(char *line, t_param *param)
 {
 	int			i;
+	char		a;
+	char		b;
+//	char		*path;
 
 	i = 0;
 	while (line[i] == ' ')
 		i++;
-	i += 2;
+	a = line[i++];
+	b = line[i++];
 	while (line[i] == ' ')
 		i++;
+	
 	if (open(line + i, O_RDONLY) == -1)
-		error(13, param);
-	parse_text_no_so(param, line);
+		return (-1);
+	param->nbparam++;
+	if (parse_text_no_so(param, line, a, b) == -1)
+		return (-1);
 	return (0);
 }

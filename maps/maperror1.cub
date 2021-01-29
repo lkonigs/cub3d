@@ -3,11 +3,11 @@ R 1000 1000
 NO ./textures/t_bricks.xpm
 SO ./textures/t_metal.xpm
 WE ./textures/t_metal.xpm
-EA ./textures/t_wood.xpm
+EA 
 S ./textures/sp_0.xpm
 
-F 
-C 0,100,200
+F 0,56,  98
+C   51 ,22,11
 
 11111111111111111111111111111
 10000000001100000000000000001

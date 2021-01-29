@@ -1,16 +1,19 @@
-R 9900 9600
+R 1000 1200
 
-NO ./textures/t_wood.xpm
-SO ./textures/t_metal.xpm
+  NO  ./textures/t_wood.xpm
 WE ./textures/t_stone.xpm
+
+SO ./textures/t_stone.xpm
 EA ./textures/t_stone.xpm
 S ./textures/sp_1.xpm
 
-C 80,180,255
-F 69,99,56
 
-111111
-100101
-102001
-1100N1
-111111
+F  101 , 34 , 25
+C  101 , 34 , 25 
+
+11111111
+10N00001
+11211101
+10000001
+10000001
+11111111

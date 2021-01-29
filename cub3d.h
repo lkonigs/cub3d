@@ -14,8 +14,8 @@
 # define CUB3D_H
 
 # define FOV 		60
-# define PMS		10.0
-# define PTS		10
+# define PMS		20.0
+# define PTS		15
 # define WH			64
 # define PR			20
 
@@ -93,7 +93,11 @@ typedef struct		s_param
 	int				*fcol;
 	int				*ccol;
 	int				error;
+	int				nbparam;
+	int				startmap;
+	int				endmap;
 	t_multiint		res;
+	t_multiint		save_res;
 	t_multiint		screen_res;
 	t_player		player;
 	t_plane			plane;
@@ -137,6 +141,7 @@ int					create_image(t_param *param);
 int					upd_image(t_param *param);
 void				display(t_param *param, int save);
 void				error_init(int i);
+void				error_parse(int i, t_param *param);//, char *line);
 void				error_more(int i);
 void				error(int i, t_param *param);
 void				ft_exit_mlx(t_param *param);
@@ -169,12 +174,12 @@ void				apply_line(int i, int j, t_param *param, char *line);
 int					parse_map(char *line, t_param *param);
 void				res_comp(int tmp, t_param *param, int i);
 int					parse_res(char *line, t_param *param);
-void				parse_col(char *line, t_param *param);
+int					parse_col(char *line, t_param *param);
 int					parse_text(char *line, t_param *param);
 void				set_dirvect(t_param *param);
 void				parse_check(t_param *param);
-void				parse_configline(char *line, t_param *param);
-void				parse_free(char *line, t_param *param);
+int				parse_configline(char *line, t_param *param);
+int				parse_free(char *line, t_param *param);
 void				parse_configfile(int fd, t_param *param);
 unsigned char		*write_pix(int fd, int i, t_param *param);
 void				ft_save(t_param *param, char *pathname);

@@ -1,15 +1,13 @@
-R 2000 1000
-
+R 1500 1000
+SO ./textures/t_metal.xpm
 NO ./textures/t_beach.xpm
-SO ./textures/t_beach.xpm
+
 WE ./textures/t_beach.xpm
 EA ./textures/t_beach.xpm
-
 S ./textures/sp_1.xpm
 
-
-C 79,217,253
-F 81,198,254
+F 65,0,250
+C 81,198,254
 
 111111111111
 100000000001

@@ -30,6 +30,7 @@ $(NAME):	make_libs test
 
 make_libs:
 			$(MAKE) all -C ./libft/
+			$(MAKE) all -C ./minilibX/
 
 all:		$(NAME)
 
@@ -38,6 +39,7 @@ test:		${OBJS}
 
 clean:
 			$(MAKE) clean -C ./libft/
+			$(MAKE) clean -C ./minilibX/
 			rm -f ${OBJS}
 
 fclean:		clean

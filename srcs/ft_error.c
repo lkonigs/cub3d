@@ -57,10 +57,12 @@ void	error_parse(int i, t_param *param)//, char *line)
 		ft_putstr("Texture: could not open .xpm file\n");
 	else if (i == 3)
 		ft_putstr("Resolution: wrong format or values (maybe too low)\n");
+	else if (i == 4)
+		ft_putstr("Invalid key\n");
 	else if (i == 7)
 		ft_putstr("Texture: invalid path or file\n");
 	else if (i == 8)
-		ft_putstr("Wrong map values\n");
+		ft_putstr("Map: map is open or invalid (hint:empty line)\n");
 	ft_exit(param);
 } 
 

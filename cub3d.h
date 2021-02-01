@@ -25,6 +25,8 @@
 # include "libft/libft.h"
 # include "minilibX/mlx.h"
 
+#include <stdio.h> //
+
 typedef struct		s_multiint
 {
 	int				x;

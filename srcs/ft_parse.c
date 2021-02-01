@@ -66,14 +66,29 @@ int		parse_configline(char *line, t_param *param)
 	int		i;
 
 	i = 0;
+	if (param->endmap == 1 && !(*line == ' ' || *line == '1'))
+		return (1);
+	else if (param->endmap == 1 && *line == ' ')
+	{
+		while (line[i] == ' ')
+			i++;
+		if (i != ft_strlen(param->tempmap[param->mapsize.y - 1]))
+			return (1);
+/*		else
+		{
+			param->endmap = -1;
+//			param->startmap = -1;
+		}	*/
+	}
 	while (line[i] == ' ')
 		i++;
-	if (param->endmap == 1)
-		return (1);
 	if (param->startmap == -1)
 	{
-		if (line[i] == 'R' && parse_res(line, param) == -1)
-			return (3);
+		if (line[i] == 'R')
+		{
+			if (parse_res(line, param) == -1)
+				return (3);
+		}
 		else if (line[i] == 'F' || line[i] == 'C')
 		{
 			if (parse_col(line + i, param) == -1)
@@ -84,15 +99,26 @@ int		parse_configline(char *line, t_param *param)
 					|| (line[i] == 'S' && line[i + 1] == 'O')
 					|| (line[i] == 'W' && line[i + 1] == 'E')
 					|| (line[i] == 'E' && line[i + 1] == 'A')
-					|| (line[i] == 'S' && line[i + 1] == ' '))
-					&& parse_text(line, param) == -1)
-			return (7);
+					|| (line[i] == 'S' && line[i + 1] == ' ')))
+		{
+			if (parse_text(line, param) == -1)
+				return (7);
+		}
+		else if (line[i] != '1' && line[i] != ' ' && *line)
+			return (4);
 	}
 	if (param->endmap == -1 && line[i] == '1')
 	{
 		if (parse_map(line, param) == -1)
 			return (8);
 	}
+	else if (param->endmap == -1 && line[i] == ' ')
+	{
+		if (parse_map(line, param) == -1)
+			return (8);
+	}
+	else if (param->endmap == -1 && param->startmap == 1)
+		return (8);
 	return (0);
 //	ft_free(line);
 }

@@ -14,6 +14,7 @@
 
 void	init_param_player(t_param *param)
 {
+	param->player.nb = 0;
 	param->player.angle = -1;
 	param->player.pos.x = -1;
 	param->player.pos.y = -1;
@@ -54,6 +55,7 @@ void	init_param(t_param *param)
 	param->nbparam = 0;
 	param->startmap = -1;
 	param->endmap = -1;
+	param->error = -1;
 	param->no_ptr = NULL;
 	param->ea_ptr = NULL;
 	param->so_ptr = NULL;
@@ -80,9 +82,7 @@ int		init_player(t_param *param, char dir, int pos_x, int pos_y)
 	else if (dir == 'E')
 		param->player.angle = 0;
 	else
-	{
 		error(9, param);
-	}
 	param->map[pos_y][pos_x] = '0';
 	return (0);
 }

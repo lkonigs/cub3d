@@ -42,6 +42,8 @@ void		parse_check(t_param *param)
 
 	if (param->startmap == -1)
 		error(6, param);
+	if (param->player.nb != 1)
+		error(7, param);
 	if (param->res.x == -1 || param->res.y == -1)
 		error(3, param);
 	if (!param->no_ptr || !param->so_ptr || !param->ea_ptr || !param->we_ptr || !param->sp_ptr)
@@ -66,20 +68,14 @@ int		parse_configline(char *line, t_param *param)
 	int		i;
 
 	i = 0;
-	if (param->endmap == 1 && !(*line == ' ' || *line == '1'))
+	if (param->endmap == 1 && !(*line))
+		return (0);
+	else if (param->endmap == 1 && line[i] == '1')
+		return (5);
+	else if (param->endmap == 1 && line[i] == ' ')
 		return (1);
-	else if (param->endmap == 1 && *line == ' ')
-	{
-		while (line[i] == ' ')
-			i++;
-		if (i != ft_strlen(param->tempmap[param->mapsize.y - 1]))
-			return (1);
-/*		else
-		{
-			param->endmap = -1;
-//			param->startmap = -1;
-		}	*/
-	}
+	else if (param->endmap == 1)
+		return (1);
 	while (line[i] == ' ')
 		i++;
 	if (param->startmap == -1)
@@ -130,6 +126,8 @@ int		parse_free(char *line, t_param *param)
 	k = 0;
 	k = parse_configline(line, param);
 	ft_free(line);
+	if (k > 0)
+		param->error = k;
 	return (k);
 }
 
@@ -137,18 +135,26 @@ void		parse_configfile(int fd, t_param *param)
 {
 	char	*line;
 	int		res;
-	int		k;
+//	int		k;
 
 	res = 0;
+	line = NULL;
 	while ((res = get_next_line(fd, &line)) > 0)
 	{
-		k = parse_free(line, param);
-		if (k > 0)
-			error_parse(k, param);//, line);
-	}
-	if (*line)
 		parse_free(line, param);
-//	ft_putstr("heho\n");
+	}
+/*	if (*line)
+	{
+		parse_free(line, param);
+	} */
+	
+/*	if (line != NULL)
+	{
+		printf("heho je dois être free moi aussi\n");
+//		free(line);
+	}  */
+	if (param->error != -1)
+		error_parse(param->error, param);
 	nb_sprite(param);
 	get_finalmap(param);
 	ft_sprite(param);

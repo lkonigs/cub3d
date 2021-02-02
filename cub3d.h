@@ -43,6 +43,7 @@ typedef struct		s_player
 {
 	t_multiint		pos;
 	double			angle;
+	unsigned int	nb;
 	t_multidouble	dir;
 }					t_player;
 

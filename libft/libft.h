@@ -17,7 +17,7 @@
 # include <unistd.h>
 # include <fcntl.h>
 
-# define BUFFER_SIZE 50
+# define BUFFER_SIZE 42
 
 int			ft_atoi(const char *str);
 int			ft_atoi_increment(const char *str, int *i);

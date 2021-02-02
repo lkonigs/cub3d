@@ -32,13 +32,11 @@ void			res_comp(int tmp, t_param *param, int i)
 
 int				parse_res(char *line, t_param *param)
 {
-	if ((param->res.x != -1) || (param->res.y != -1))
-		return (-1);
+	param->nbparam++;
 	mlx_get_screen_size(param->mlx_ptr, &param->screen_res.x,
 		&param->screen_res.y);
 	while (*line == ' ' || *line == 'R')
 		line++;
-	param->nbparam++;
 	param->save_res.x = ft_atoi(line);
 	while (ft_isdigit(*line))
 		line++;

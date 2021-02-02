@@ -12,6 +12,8 @@
 
 #include "libft.h"
 
+#include <stdio.h>//
+
 int				endline(char *alreadyread)
 {
 	int			len;
@@ -32,6 +34,7 @@ char			*fillread(int moretoread, char *buf, char *alreadyread)
 {
 	char		*tmp;
 
+	tmp = NULL;
 	buf[moretoread] = '\0';
 	if (alreadyread == NULL)
 		alreadyread = ft_strdup(buf);
@@ -39,8 +42,8 @@ char			*fillread(int moretoread, char *buf, char *alreadyread)
 	{
 		tmp = alreadyread;
 		alreadyread = ft_strjoin(alreadyread, buf);
-		free(tmp);
-		tmp = NULL;
+		ft_free(tmp);
+	//	tmp = NULL;
 	}
 	return (alreadyread);
 }
@@ -52,8 +55,8 @@ char			*emptyread(char **line, char *alreadyread, int len)
 	tmp = alreadyread;
 	*line = ft_substr(alreadyread, 0, len);
 	alreadyread = ft_substr(alreadyread, len + 1, ft_strlen(alreadyread));
-	free(tmp);
-	tmp = NULL;
+	ft_free(tmp);
+	//tmp = NULL;
 	return (alreadyread);
 }
 
@@ -77,7 +80,9 @@ int				get_next_line(int fd, char **line)
 		&& ((moretoread = read(fd, buf, BUFFER_SIZE)) > 0))
 		alreadyread = fillread(moretoread, buf, alreadyread);
 	if (moretoread < 0)
+	{
 		return (erreur(alreadyread));
+	}
 	if ((len = endline(alreadyread)) >= 0)
 	{
 		alreadyread = emptyread(line, alreadyread, len);
@@ -85,8 +90,11 @@ int				get_next_line(int fd, char **line)
 	}
 	else
 	{
+		printf("mtr = %i\n", moretoread);
 		alreadyread = fillread(moretoread, buf, alreadyread);
-		*line = ft_strjoin(alreadyread, buf);
+//		*line = ft_strjoin(alreadyread, buf);
+//		*line = NULL;
+//		return (1);
 	}
 	alreadyread = ft_free(alreadyread);
 	return (0);

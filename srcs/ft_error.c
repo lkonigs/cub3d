@@ -32,37 +32,25 @@ void	error_init(int i)
 	exit(0);
 }
 
-void	error_more(int i)
-{
-	if (i == 10)
-		ft_putstr("Player: no player detected on the map\n");
-	else if (i == 11)
-		ft_putstr("Error creating the window with mlx\n");
-	else if (i == 12)
-		ft_putstr("Could not reach a proper wall intersection\n");
-	else if (i == 14)
-		ft_putstr("Wrong number of sprites\n");
-}
-
-void	error_parse(int i, t_param *param)//, char *line)
+void	error_parse(int i, t_param *param)
 {
 	ft_putstr ("Error\n");
 	if (i == 1)
-		ft_putstr("Config file does not end with the last map line\n");
+		ft_putstr("Config file: does not end with the last map line\n");
 	else if (i == 2)
 		ft_putstr("F/C: wrong format\n");
-	else if (i == 6)
-		ft_putstr("Texture: error while turning xpm file into mlx image\n");
-	else if (i == 13)
-		ft_putstr("Texture: could not open .xpm file\n");
 	else if (i == 3)
 		ft_putstr("Resolution: wrong format or values (maybe too low)\n");
 	else if (i == 4)
-		ft_putstr("Invalid key\n");
+		ft_putstr("Config file: invalid key or non empty line (space)\n");
+	else if (i == 5)
+		ft_putstr("Config file: double line of '1' or attempt to create a second map\n");
+	else if (i == 6)
+		ft_putstr("Texture: error while turning xpm file into mlx image\n");
 	else if (i == 7)
-		ft_putstr("Texture: invalid path or file\n");
+		ft_putstr("Texture: invalid path or file (may be due to extra spaces)\n");
 	else if (i == 8)
-		ft_putstr("Map: map is open or invalid (hint:empty line)\n");
+		ft_putstr("Map: map is open or invalid (empty line, wrong direction)\n");
 	ft_exit(param);
 } 
 
@@ -78,17 +66,21 @@ void	error(int i, t_param *param)
 	else if (i == 3)
 		ft_putstr("R: wrong or missing resolution values in the config file\n");
 	else if (i == 4)
-		ft_putstr("Wrong number or disposition of parameters given in the .cub file\n");
+		ft_putstr("Config file: Wrong number or disposition of parameters given in the .cub file\n");
 	else if (i == 5)
 		ft_putstr("F/C: wrong or missing color values in the config file\n");
 	else if (i == 6)
-		ft_putstr("Map: missing map\n");	
+		ft_putstr("Map: missing map\n");
+	else if (i == 7)
+		ft_putstr("Map: missing player/over one player\n");	
 	else if (i == 8)
 		ft_putstr("Map: map is open or invalid\n");
 	else if (i == 9)
 		ft_putstr("Wrong direction or number of players in the config file\n");
-	else if (i >= 10)
-		error_more(i);
+	else if (i == 10)
+		ft_putstr("Player: no player detected on the map\n");
+	else if (i == 12)
+		ft_putstr("Raycasting: could not reach a proper wall intersection\n");
 	ft_exit(param);
 }
 

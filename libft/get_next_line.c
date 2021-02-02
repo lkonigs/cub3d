@@ -37,13 +37,14 @@ char			*fillread(int moretoread, char *buf, char *alreadyread)
 	tmp = NULL;
 	buf[moretoread] = '\0';
 	if (alreadyread == NULL)
+	{
 		alreadyread = ft_strdup(buf);
+	}
 	else
 	{
 		tmp = alreadyread;
 		alreadyread = ft_strjoin(alreadyread, buf);
 		ft_free(tmp);
-	//	tmp = NULL;
 	}
 	return (alreadyread);
 }
@@ -56,7 +57,6 @@ char			*emptyread(char **line, char *alreadyread, int len)
 	*line = ft_substr(alreadyread, 0, len);
 	alreadyread = ft_substr(alreadyread, len + 1, ft_strlen(alreadyread));
 	ft_free(tmp);
-	//tmp = NULL;
 	return (alreadyread);
 }
 
@@ -90,12 +90,10 @@ int				get_next_line(int fd, char **line)
 	}
 	else
 	{
-		printf("mtr = %i\n", moretoread);
 		alreadyread = fillread(moretoread, buf, alreadyread);
-//		*line = ft_strjoin(alreadyread, buf);
-//		*line = NULL;
-//		return (1);
+		*line = ft_strjoin(alreadyread, buf);
 	}
-	alreadyread = ft_free(alreadyread);
+	ft_free(alreadyread);
+	alreadyread = NULL;
 	return (0);
 }

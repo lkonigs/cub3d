@@ -135,7 +135,6 @@ void		parse_configfile(int fd, t_param *param)
 {
 	char	*line;
 	int		res;
-//	int		k;
 
 	res = 0;
 	line = NULL;
@@ -143,16 +142,12 @@ void		parse_configfile(int fd, t_param *param)
 	{
 		parse_free(line, param);
 	}
-/*	if (*line)
+	if (*line)
 	{
 		parse_free(line, param);
-	} */
-	
-/*	if (line != NULL)
-	{
-		printf("heho je dois être free moi aussi\n");
-//		free(line);
-	}  */
+	}
+	else
+		ft_free(line);
 	if (param->error != -1)
 		error_parse(param->error, param);
 	nb_sprite(param);

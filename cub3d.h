@@ -15,7 +15,7 @@
 
 # define FOV 		60
 # define PMS		20.0
-# define PTS		15
+# define PTS		60
 # define WH			64
 # define PR			20
 
@@ -64,7 +64,7 @@ typedef struct		s_point
 {
 	t_multidouble	pos;
 	int				col;
-	double			dist;
+	int				dist;
 	char			text;
 }					t_point;
 

@@ -135,7 +135,7 @@ typedef struct		s_spwall
 	t_multiint		drawend;
 }					t_spwall;
 
-void				check_map(t_param *param, int i, int j, int type);
+int					check_map(t_param *param, int i, int j, int type);
 int					check_sp(t_param *param, int i, int j, unsigned int k);
 int					check_inter_sp(t_point b, t_param *param, unsigned int k);
 int					open_configfile(int argc, char **argv, int *save);
@@ -173,7 +173,7 @@ t_point				intersection(t_param *param, int col, double angle);
 t_point				inter_cmp(t_point a, t_point b, t_param *p, double angle);
 void				fill_map(t_param *param, int i, int j);
 int					get_finalmap(t_param *param);
-void				apply_line(int i, int j, t_param *param, char *line);
+int					apply_line(int i, int j, t_param *param, char *line);
 int					parse_map(char *line, t_param *param);
 void				res_comp(int tmp, t_param *param, int i);
 int					parse_res(char *line, t_param *param);

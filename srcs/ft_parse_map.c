@@ -64,11 +64,13 @@ int			get_finalmap(t_param *param)
 	return (0);
 }
 
-void		apply_line(int i, int j, t_param *param, char *line)
+int			apply_line(int i, int j, t_param *param, char *line)
 {
 	int		k;
+	int		res;
 
 	k = -1;
+	res = 0;
 	param->endmap = 1;
 	if (param->startmap == -1)
 	{
@@ -81,20 +83,23 @@ void		apply_line(int i, int j, t_param *param, char *line)
 		if (line[k] != '1' && line[k] != ' ')
 			param->endmap = -1;
 		if (line[k] == '0' || line[k] >= 'A')
-			check_map(param, i, j, 0);
+			res = check_map(param, i, j, 0);
 	}
 	param->tempmap[i++][++j] = 0;
+	return (res);
 }
 
 int			parse_map(char *line, t_param *param)
 {
 	int		j;
 	int		i;
+	int		res;
 
 	j = -1;
+	res = 0;
 	i = param->mapsize.y;
 	if (!(param->tempmap[i] = malloc(sizeof(char) * (ft_strlen(line) + 1))))
-		error(1, param);
+		return (9);
 	param->tempmap[i][0] = 0;
 	while (line[++j])
 	{
@@ -107,7 +112,7 @@ int			parse_map(char *line, t_param *param)
 			param->player.nb++;
 	}
 	j = -1;
-	apply_line(i, j, param, line);
+	res = apply_line(i, j, param, line);
 	param->mapsize.y++;
-	return (0);
+	return (res);
 }

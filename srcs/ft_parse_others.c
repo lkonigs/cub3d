@@ -100,7 +100,7 @@ int			parse_col(char *line, t_param *param)
 		}
 		i++;
 	}
-	if (vir == 1 || ft_isalpha(*line))
+	if (vir == 1 || ft_isalpha(*line) || ft_isalnum(*line))
 		return (-1);
 	return (0);
 }

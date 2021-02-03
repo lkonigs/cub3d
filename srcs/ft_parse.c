@@ -80,12 +80,12 @@ int		parse_configline(char *line, t_param *param)
 		i++;
 	if (param->startmap == -1)
 	{
-		if (line[i] == 'R')
+		if ((line[i] == 'R') && line[i + 1] == ' ')
 		{
 			if (parse_res(line, param) == -1)
 				return (3);
 		}
-		else if (line[i] == 'F' || line[i] == 'C')
+		else if ((line[i] == 'F' || line[i] == 'C') && line[i + 1] == ' ')
 		{
 			if (parse_col(line + i, param) == -1)
 				return (2);
@@ -105,12 +105,14 @@ int		parse_configline(char *line, t_param *param)
 	}
 	if (param->endmap == -1 && line[i] == '1')
 	{
-		if (parse_map(line, param) == -1)
+		if (parse_map(line, param) != 0)
+		{
 			return (8);
+		}
 	}
 	else if (param->endmap == -1 && line[i] == ' ')
 	{
-		if (parse_map(line, param) == -1)
+		if (parse_map(line, param) != 0)
 			return (8);
 	}
 	else if (param->endmap == -1 && param->startmap == 1)

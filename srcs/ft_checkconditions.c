@@ -12,20 +12,25 @@
 
 #include "../cub3d.h"
 
-void	check_map(t_param *param, int i, int j, int type)
+int		check_map(t_param *param, int i, int j, int type)
 {
 	if (param->tempmap[i][j] == '2' || param->tempmap[i][j] == '0'
 		|| param->tempmap[i][j] >= 'A')
 	{
 		if (i == 0 || j == 0)
-			error(8, param);
+		{
+			if (type == 0)
+				return (8);
+			else
+				error(8, param);
+		}
 		if (type == 0)
 		{
 			if (param->tempmap[i - 1][j - 1] == ' ' ||
 				param->tempmap[i - 1][j] == ' ' ||
 				param->tempmap[i][j - 1] == ' ' ||
 				param->tempmap[i - 1][j + 1] == ' ')
-				error(8, param);
+				return (8);
 		}
 		else
 		{
@@ -38,6 +43,7 @@ void	check_map(t_param *param, int i, int j, int type)
 				error(8, param);
 		}
 	}
+	return (0);
 }
 
 int		check_sp(t_param *param, int i, int j, unsigned int k)

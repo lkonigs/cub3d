@@ -51,6 +51,8 @@ void	error_parse(int i, t_param *param)
 		ft_putstr("Texture: invalid path or file (may be due to extra spaces)\n");
 	else if (i == 8)
 		ft_putstr("Map: map is open or invalid (empty line, wrong direction)\n");
+	else if (i == 9)
+		ft_putstr("Error while allocating memory\n");
 	ft_exit(param);
 } 
 

@@ -12,8 +12,6 @@
 
 #include "../cub3d.h"
 
-#include <stdio.h> //
-
 void	error_init(int i)
 {
 	ft_putstr("Error\n");
@@ -34,7 +32,7 @@ void	error_init(int i)
 
 void	error_parse(int i, t_param *param)
 {
-	ft_putstr ("Error\n");
+	ft_putstr("Error\n");
 	if (i == 1)
 		ft_putstr("Config file: does not end with the last map line\n");
 	else if (i == 2)
@@ -44,17 +42,25 @@ void	error_parse(int i, t_param *param)
 	else if (i == 4)
 		ft_putstr("Config file: invalid key or non empty line (space)\n");
 	else if (i == 5)
-		ft_putstr("Config file: double line of '1' or attempt to create a second map\n");
+		ft_putstr("Map: double line of '1'/attempt to create a 2nd map\n");
 	else if (i == 6)
 		ft_putstr("Texture: error while turning xpm file into mlx image\n");
 	else if (i == 7)
-		ft_putstr("Texture: invalid path or file (may be due to extra spaces)\n");
+		ft_putstr("Texture: invalid path/file (may be due to extra spaces)\n");
 	else if (i == 8)
-		ft_putstr("Map: map is open or invalid (empty line, wrong direction)\n");
+		ft_putstr("Map: map is open/invalid (empty line, wrong direction)\n");
 	else if (i == 9)
 		ft_putstr("Error while allocating memory\n");
 	ft_exit(param);
-} 
+}
+
+void	error_more(int i, t_param *param)
+{
+	if (i == 10)
+		ft_putstr("Player: no player detected on the map\n");
+	else if (i == 12)
+		ft_putstr("Raycasting: could not reach a proper wall intersection\n");
+}
 
 void	error(int i, t_param *param)
 {
@@ -68,64 +74,17 @@ void	error(int i, t_param *param)
 	else if (i == 3)
 		ft_putstr("R: wrong or missing resolution values in the config file\n");
 	else if (i == 4)
-		ft_putstr("Config file: Wrong number or disposition of parameters given in the .cub file\n");
+		ft_putstr("Config file: wrong parameters (nb/order) in the .cub\n");
 	else if (i == 5)
 		ft_putstr("F/C: wrong or missing color values in the config file\n");
 	else if (i == 6)
 		ft_putstr("Map: missing map\n");
 	else if (i == 7)
-		ft_putstr("Map: missing player/over one player\n");	
+		ft_putstr("Map: missing player/over one player\n");
 	else if (i == 8)
 		ft_putstr("Map: map is open or invalid\n");
 	else if (i == 9)
 		ft_putstr("Wrong direction or number of players in the config file\n");
-	else if (i == 10)
-		ft_putstr("Player: no player detected on the map\n");
-	else if (i == 12)
-		ft_putstr("Raycasting: could not reach a proper wall intersection\n");
+	error_more(i, param);
 	ft_exit(param);
-}
-
-void	ft_exit_mlx(t_param *param)
-{
-	if (param->imgptr)
-		mlx_destroy_image(param->mlx_ptr, param->imgptr);
-	if (param->no_ptr)
-		mlx_destroy_image(param->mlx_ptr, param->no_ptr);
-	if (param->so_ptr)
-		mlx_destroy_image(param->mlx_ptr, param->so_ptr);
-	if (param->ea_ptr)
-		mlx_destroy_image(param->mlx_ptr, param->ea_ptr);
-	if (param->we_ptr)
-		mlx_destroy_image(param->mlx_ptr, param->we_ptr);
-	if (param->sp_ptr)
-		mlx_destroy_image(param->mlx_ptr, param->sp_ptr);
-	if (param->win_ptr)
-		mlx_destroy_window(param->mlx_ptr, param->win_ptr);
-	param->win_ptr = NULL;
-	mlx_destroy_display(param->mlx_ptr);
-	free(param->mlx_ptr);
-}
-
-void	ft_exit(t_param *param)
-{
-	int		i;
-
-	i = -1;
-	while (i++ < param->mapsize.y)
-		free(param->tempmap[i]);
-	free(param->tempmap);
-	i = 0;
-	if (param->map)
-	{
-		while (i < param->mapsize.y * 64)
-			free(param->map[i++]);
-	}
-	free(param->map);
-	free(param->fcol);
-	free(param->ccol);
-	if (param->mlx_ptr)
-		ft_exit_mlx(param);
-	free(param);
-	exit(0);
 }

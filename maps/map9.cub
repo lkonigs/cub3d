@@ -1,15 +1,15 @@
 R 2000 1000
 
-NO ./textures/texture_wood.xpm
-SO ./textures/texture_wood.xpm
-WE ./textures/texture_wood.xpm
-EA ./textures/texture_wood.xpm
+NO ./textures/t_wood.xpm
+SO ./textures/t_wood.xpm
+WE ./textures/t_wood.xpm
+EA ./textures/t_wood.xpm
 
-S ./textures/new.xpm
+S ./textures/sp_0.xpm
 
 
-C 79,217,253
-F 81,198,254
+C 255,255,255
+F 0,0,0
 
 1111111111111
 1000000000001

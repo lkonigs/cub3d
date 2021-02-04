@@ -25,8 +25,6 @@
 # include "libft/libft.h"
 # include "minilibX/mlx.h"
 
-#include <stdio.h> //
-
 typedef struct		s_multiint
 {
 	int				x;
@@ -144,7 +142,7 @@ int					create_image(t_param *param);
 int					upd_image(t_param *param);
 void				display(t_param *param, int save);
 void				error_init(int i);
-void				error_parse(int i, t_param *param);//, char *line);
+void				error_parse(int i, t_param *param);
 void				error_more(int i);
 void				error(int i, t_param *param);
 void				ft_exit_mlx(t_param *param);
@@ -181,8 +179,8 @@ int					parse_col(char *line, t_param *param);
 int					parse_text(char *line, t_param *param);
 void				set_dirvect(t_param *param);
 void				parse_check(t_param *param);
-int				parse_configline(char *line, t_param *param);
-int				parse_free(char *line, t_param *param);
+int					parse_configline(char *line, t_param *param);
+int					parse_free(char *line, t_param *param);
 void				parse_configfile(int fd, t_param *param);
 unsigned char		*write_pix(int fd, int i, t_param *param);
 void				ft_save(t_param *param, char *pathname);

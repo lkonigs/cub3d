@@ -1,8 +1,8 @@
 R 900 600
 
 NO ./textures/t_wood.xpm
-SO ./textures/t_metal.xpm
-WE ./textures/t_beach.xpm
+SO ./textures/t_beach.xpm
+WE ./textures/t_purple.xpm
 EA ./textures/t_beach.xpm
 
 S ./minilibX/test/open30.xpm

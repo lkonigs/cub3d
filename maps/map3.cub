@@ -1,11 +1,11 @@
 R 2000 1000
 
-NO ./textures/beach.xpm
-SO ./textures/beach.xpm
-WE ./textures/beach.xpm
-EA ./textures/beach.xpm
+NO ./textures/t_beach.xpm
+SO ./textures/t_beach.xpm
+WE ./textures/t_beach.xpm
+EA ./textures/t_beach.xpm
 
-S ./textures/harry.xpm
+S ./textures/sp_0.xpm
 
 
 C 79,217,253

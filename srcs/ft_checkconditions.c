@@ -21,25 +21,20 @@ int		check_map(t_param *param, int i, int j, int type)
 		{
 			if (type == 0)
 				return (8);
-			else
-				error(8, param);
+			error(8, param);
 		}
 		if (type == 0)
 		{
-			if (//param->tempmap[i - 1][j - 1] == ' ' ||
-				param->tempmap[i - 1][j] == ' ' ||
-				param->tempmap[i][j - 1] == ' ' )//||
-				//param->tempmap[i - 1][j + 1] == ' ')
+			if (param->tempmap[i - 1][j] == ' ' ||
+				param->tempmap[i][j - 1] == ' ')
 				return (8);
 		}
 		else
 		{
 			if (i == param->mapsize.y - 1 ||
 				j == ft_strlen(param->tempmap[i]) - 1 ||
-				//param->tempmap[i + 1][j - 1] == ' ' ||
 				param->tempmap[i][j + 1] == ' ' ||
-				param->tempmap[i + 1][j] == ' ' )//||
-				//param->tempmap[i + 1][j + 1] == ' ')
+				param->tempmap[i + 1][j] == ' ')
 				error(8, param);
 		}
 	}
@@ -82,10 +77,12 @@ int		check_proximity_x(int max_pos, int gv_pos, t_param *param)
 	if ((param->map[gv_pos][max_pos] != '1') &&
 			(param->map[gv_pos][max_pos] != '2'))
 	{
-		if (param->player.pos.x < max_pos && (param->map[gv_pos][max_pos + PR] != '1') &&
+		if (param->player.pos.x < max_pos &&
+			(param->map[gv_pos][max_pos + PR] != '1') &&
 			(param->map[gv_pos][max_pos + PR] != '2'))
 			return (1);
-		if (param->player.pos.x > max_pos && (param->map[gv_pos][max_pos - PR] != '1') &&
+		if (param->player.pos.x > max_pos &&
+			(param->map[gv_pos][max_pos - PR] != '1') &&
 			(param->map[gv_pos][max_pos - PR] != '2'))
 			return (1);
 	}
@@ -97,10 +94,12 @@ int		check_proximity_y(int max_pos, int gv_pos, t_param *param)
 	if ((param->map[max_pos][gv_pos] != '1') &&
 			(param->map[max_pos][gv_pos] != '2'))
 	{
-		if (param->player.pos.y < max_pos && (param->map[max_pos + PR][gv_pos] != '1') &&
+		if (param->player.pos.y < max_pos &&
+			(param->map[max_pos + PR][gv_pos] != '1') &&
 			(param->map[max_pos + PR][gv_pos] != '2'))
 			return (1);
-		if (param->player.pos.y > max_pos && ((param->map[max_pos - PR][gv_pos] != '1') &&
+		if (param->player.pos.y > max_pos &&
+			((param->map[max_pos - PR][gv_pos] != '1') &&
 			(param->map[max_pos - PR][gv_pos] != '2')))
 			return (1);
 	}

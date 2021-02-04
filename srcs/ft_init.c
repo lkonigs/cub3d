@@ -12,6 +12,20 @@
 
 #include "../cub3d.h"
 
+void	init_parse(t_param *param)
+{
+	param->nbparam = 0;
+	param->startmap = -1;
+	param->endmap = -1;
+	param->error = -1;
+	param->map = NULL;
+	param->no_ptr = NULL;
+	param->ea_ptr = NULL;
+	param->so_ptr = NULL;
+	param->we_ptr = NULL;
+	param->sp_ptr = NULL;
+}
+
 void	init_param_player(t_param *param)
 {
 	param->player.nb = 0;
@@ -29,6 +43,7 @@ void	init_param_player(t_param *param)
 	param->save_res = (t_multiint){.x = -1, .y = -1};
 	param->screen_res = (t_multiint){.x = -1, .y = -1};
 	param->nb_sprite = 0;
+	init_parse(param);
 }
 
 void	init_param(t_param *param)
@@ -48,19 +63,8 @@ void	init_param(t_param *param)
 	while (i < 3)
 	{
 		param->ccol[i] = 500;
-		param->fcol[i] = 500;
-		i++;
+		param->fcol[i++] = 500;
 	}
-	param->map = NULL;
-	param->nbparam = 0;
-	param->startmap = -1;
-	param->endmap = -1;
-	param->error = -1;
-	param->no_ptr = NULL;
-	param->ea_ptr = NULL;
-	param->so_ptr = NULL;
-	param->we_ptr = NULL;
-	param->sp_ptr = NULL;
 	param->imgptr = NULL;
 	param->win_ptr = NULL;
 	param->mlx_ptr = NULL;

@@ -21,6 +21,16 @@ unsigned char				*write_pix(int fd, int i, t_param *param)
 	return (pix);
 }
 
+void						ft_save_init(t_param *param)
+{
+	int						u;
+
+	param->res.x = param->save_res.x;
+	param->res.y = param->save_res.y;
+	param->imgptr = mlx_new_image(param->mlx_ptr, param->res.x, param->res.y);
+	param->imgstr = mlx_get_data_addr(param->imgptr, &u, &u, &u);
+}
+
 void						ft_save(t_param *param, char *pathname)
 {
 	int						fd;
@@ -28,12 +38,8 @@ void						ft_save(t_param *param, char *pathname)
 	int						i;
 	int						k;
 	unsigned char			*pix;
-	int						u;
 
-	param->res.x = param->save_res.x;
-	param->res.y = param->save_res.y;
-	param->imgptr = mlx_new_image(param->mlx_ptr, param->res.x, param->res.y);
-	param->imgstr = mlx_get_data_addr(param->imgptr, &u, &u, &u);
+	ft_save_init(param);
 	create_image(param);
 	fd = open(pathname, O_TRUNC | O_WRONLY | O_CREAT, S_IWUSR
 		| S_IRUSR | S_IWGRP | S_IRGRP | S_IWOTH | S_IROTH);

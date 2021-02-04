@@ -36,9 +36,9 @@ int				open_configfile(int argc, char **argv, int *save)
 	return (fd);
 }
 
-int			parse_free(char *line, t_param *param)
+int				parse_free(char *line, t_param *param)
 {
-	int		k;
+	int			k;
 
 	k = 0;
 	k = parse_configline(line, param);
@@ -48,10 +48,10 @@ int			parse_free(char *line, t_param *param)
 	return (k);
 }
 
-void		parse_configfile(int fd, t_param *param)
+void			parse_configfile(int fd, t_param *param)
 {
-	char	*line;
-	int		res;
+	char		*line;
+	int			res;
 
 	res = 0;
 	line = NULL;

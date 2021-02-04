@@ -36,6 +36,44 @@ int				open_configfile(int argc, char **argv, int *save)
 	return (fd);
 }
 
+int			parse_free(char *line, t_param *param)
+{
+	int		k;
+
+	k = 0;
+	k = parse_configline(line, param);
+	ft_free(line);
+	if (k > 0)
+		param->error = k;
+	return (k);
+}
+
+void		parse_configfile(int fd, t_param *param)
+{
+	char	*line;
+	int		res;
+
+	res = 0;
+	line = NULL;
+	while ((res = get_next_line(fd, &line)) > 0)
+	{
+		parse_free(line, param);
+	}
+	if (*line)
+	{
+		parse_free(line, param);
+	}
+	else
+		ft_free(line);
+	if (param->error != -1)
+		error_parse(param->error, param);
+	nb_sprite(param);
+	get_finalmap(param);
+	ft_sprite(param);
+	parse_check(param);
+	set_dirvect(param);
+}
+
 int				main(int argc, char *argv[])
 {
 	t_param		*param;

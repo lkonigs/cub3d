@@ -46,7 +46,8 @@ void		parse_check(t_param *param)
 		error(7, param);
 	if (param->res.x == -1 || param->res.y == -1)
 		error(3, param);
-	if (!param->no_ptr || !param->so_ptr || !param->ea_ptr || !param->we_ptr || !param->sp_ptr)
+	if (!param->no_ptr || !param->so_ptr || !param->ea_ptr
+		|| !param->we_ptr || !param->sp_ptr)
 		error(2, param);
 	if (param->player.pos.x == -1 || param->player.pos.y == -1 ||
 		param->player.angle == -1)
@@ -63,7 +64,53 @@ void		parse_check(t_param *param)
 		error(4, param);
 }
 
-int		parse_configline(char *line, t_param *param)
+int			parse_aftermap(t_param *param, char *line, int i)
+{
+	if (param->endmap == -1 && line[i] == '1')
+	{
+		if (parse_map(line, param) != 0)
+			return (8);
+	}
+	else if (param->endmap == -1 && line[i] == ' ')
+	{
+		if (parse_map(line, param) != 0)
+			return (8);
+	}
+	else if (param->endmap == -1 && param->startmap == 1)
+		return (8);
+	return (0);
+}
+
+int			parse_beforemap(t_param *param, char *line, int i)
+{
+	if (param->startmap == -1)
+	{
+		if ((line[i] == 'R') && line[i + 1] == ' ')
+		{
+			if (parse_res(line, param) == -1)
+				return (3);
+		}
+		else if ((line[i] == 'F' || line[i] == 'C') && line[i + 1] == ' ')
+		{
+			if (parse_col(line + i, param) == -1)
+				return (2);
+		}
+		else if (((line[i] == 'N' && line[i + 1] == 'O')
+					|| (line[i] == 'S' && line[i + 1] == 'O')
+					|| (line[i] == 'W' && line[i + 1] == 'E')
+					|| (line[i] == 'E' && line[i + 1] == 'A')
+					|| (line[i] == 'S' && line[i + 1] == ' ')))
+		{
+			if (parse_text(line, param) == -1)
+				return (7);
+		}
+		else if (line[i] != '1' && line[i] != ' ' && *line)
+			return (4);
+	}
+	return (parse_aftermap(param, line, i));
+}
+
+int			parse_configline(char *line, t_param *param)
 {
 	int		i;
 
@@ -78,83 +125,5 @@ int		parse_configline(char *line, t_param *param)
 		return (1);
 	while (line[i] == ' ')
 		i++;
-	if (param->startmap == -1)
-	{
-		if ((line[i] == 'R') && line[i + 1] == ' ')
-		{
-			if (parse_res(line, param) == -1)
-				return (3);
-		}
-		else if ((line[i] == 'F' || line[i] == 'C') && line[i + 1] == ' ')
-		{
-			if (parse_col(line + i, param) == -1)
-				return (2);
-			param->nbparam++;
-		}
-		else if (((line[i] == 'N' && line[i + 1] == 'O')
-					|| (line[i] == 'S' && line[i + 1] == 'O')
-					|| (line[i] == 'W' && line[i + 1] == 'E')
-					|| (line[i] == 'E' && line[i + 1] == 'A')
-					|| (line[i] == 'S' && line[i + 1] == ' ')))
-		{
-			if (parse_text(line, param) == -1)
-				return (7);
-		}
-		else if (line[i] != '1' && line[i] != ' ' && *line)
-			return (4);
-	}
-	if (param->endmap == -1 && line[i] == '1')
-	{
-		if (parse_map(line, param) != 0)
-		{
-			return (8);
-		}
-	}
-	else if (param->endmap == -1 && line[i] == ' ')
-	{
-		if (parse_map(line, param) != 0)
-			return (8);
-	}
-	else if (param->endmap == -1 && param->startmap == 1)
-		return (8);
-	return (0);
-//	ft_free(line);
-}
-
-int		parse_free(char *line, t_param *param)
-{
-	int	k;
-
-	k = 0;
-	k = parse_configline(line, param);
-	ft_free(line);
-	if (k > 0)
-		param->error = k;
-	return (k);
-}
-
-void		parse_configfile(int fd, t_param *param)
-{
-	char	*line;
-	int		res;
-
-	res = 0;
-	line = NULL;
-	while ((res = get_next_line(fd, &line)) > 0)
-	{
-		parse_free(line, param);
-	}
-	if (*line)
-	{
-		parse_free(line, param);
-	}
-	else
-		ft_free(line);
-	if (param->error != -1)
-		error_parse(param->error, param);
-	nb_sprite(param);
-	get_finalmap(param);
-	ft_sprite(param);
-	parse_check(param);
-	set_dirvect(param);
+	return (parse_beforemap(param, line, i));
 }

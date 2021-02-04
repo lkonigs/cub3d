@@ -52,6 +52,7 @@ int				parse_col(char *line, t_param *param)
 	vir = 1;
 	i = 0;
 	letter = 'A';
+	param->nbparam++;
 	while (*line == ' ' || *line == 'F' || *line == 'C')
 		letter = col_letter(line++, letter);
 	if (*line == ',')

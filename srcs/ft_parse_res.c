@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_parse_others.c                                  :+:      :+:    :+:   */
+/*   ft_parse_res.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lkonig <lkonig@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -30,6 +30,15 @@ void			res_comp(int tmp, t_param *param, int i)
 	}
 }
 
+int				res_check(t_param *param)
+{
+	if (param->res.x < 150 || param->res.y < 100)
+		return (-1);
+	else if (param->res.x > 0 && param->res.y > 0)
+		return (0);
+	return (-1);
+}
+
 int				parse_res(char *line, t_param *param)
 {
 	param->nbparam++;
@@ -53,54 +62,5 @@ int				parse_res(char *line, t_param *param)
 	}
 	res_comp(param->save_res.x, param, 0);
 	res_comp(param->save_res.y, param, 1);
-	if (param->res.x < 150 || param->res.y < 100)
-		return (-1);
-	else if (param->res.x > 0 && param->res.y > 0)
-		return (0);
-	return (-1);
-}
-
-int			parse_col(char *line, t_param *param)
-{
-	int			i;
-	char		letter;
-	int			vir;
-
-	vir = 1;
-	i = 0;
-	letter = 'A';
-	while (*line == ' ' || *line == 'F' || *line == 'C')
-	{
-		if (*line == 'F' && letter == 'A')
-			letter = 'F';
-		else if (*line == 'C' && letter == 'A')
-			letter = 'C';
-		line++;
-	}
-	if (*line == ',')
-		return (-1);
-	while (i < 3 && *line && vir == 1)
-	{
-		vir = 0;
-		while (*line == ' ')
-			line++;
-		if (!ft_isdigit(*line))
-			return (-1);
-		if (letter == 'F')
-			param->fcol[i] = ft_atoi(line);
-		if (letter == 'C')
-			param->ccol[i] = ft_atoi(line);
-		while (ft_isdigit(*line))
-			line++;
-		while ((*line == ' ' || *line == ',') && vir == 0)
-		{
-			if (*line == ',')
-				vir = 1;
-			line++;
-		}
-		i++;
-	}
-	if (vir == 1 || ft_isalpha(*line) || ft_isalnum(*line))
-		return (-1);
-	return (0);
+	return (res_check(param));
 }

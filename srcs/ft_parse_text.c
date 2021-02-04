@@ -12,7 +12,7 @@
 
 #include "../cub3d.h"
 
-int			parse_text_sp(t_param *param, char *line, char a, char b)
+int				parse_text_sp(t_param *param, char *line, char a, char b)
 {
 	int			u;
 	int			i;
@@ -30,7 +30,7 @@ int			parse_text_sp(t_param *param, char *line, char a, char b)
 	return (0);
 }
 
-int			parse_text_ea_we(t_param *param, char *line, char a, char b)
+int				parse_text_ea_we(t_param *param, char *line, char a, char b)
 {
 	int			u;
 	int			i;
@@ -57,10 +57,9 @@ int			parse_text_ea_we(t_param *param, char *line, char a, char b)
 	return (0);
 }
 
-int			parse_text_no_so(t_param *param, char *line, char a, char b)
+int				parse_text_no_so(t_param *param, char *line, char a, char b)
 {
 	int			i;
-//	int			j;
 	int			u;
 
 	i = 2;
@@ -73,7 +72,7 @@ int			parse_text_no_so(t_param *param, char *line, char a, char b)
 			return (-1);
 		param->no_text = mlx_get_data_addr(param->no_ptr, &u, &u, &u);
 	}
-	else if (a == 'S' && b == 'O' &&!param->so_ptr)
+	else if (a == 'S' && b == 'O' && !param->so_ptr)
 	{
 		if (!(param->so_ptr = mlx_xpm_file_to_image(param->mlx_ptr,
 			line + i, &u, &u)))
@@ -90,7 +89,6 @@ int				parse_text(char *line, t_param *param)
 	int			i;
 	char		a;
 	char		b;
-//	char		*path;
 
 	i = 0;
 	while (line[i] == ' ')
@@ -99,7 +97,6 @@ int				parse_text(char *line, t_param *param)
 	b = line[i++];
 	while (line[i] == ' ')
 		i++;
-	
 	if (open(line + i, O_RDONLY) == -1)
 		return (-1);
 	param->nbparam++;

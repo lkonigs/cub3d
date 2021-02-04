@@ -26,20 +26,20 @@ int		check_map(t_param *param, int i, int j, int type)
 		}
 		if (type == 0)
 		{
-			if (param->tempmap[i - 1][j - 1] == ' ' ||
+			if (//param->tempmap[i - 1][j - 1] == ' ' ||
 				param->tempmap[i - 1][j] == ' ' ||
-				param->tempmap[i][j - 1] == ' ' ||
-				param->tempmap[i - 1][j + 1] == ' ')
+				param->tempmap[i][j - 1] == ' ' )//||
+				//param->tempmap[i - 1][j + 1] == ' ')
 				return (8);
 		}
 		else
 		{
 			if (i == param->mapsize.y - 1 ||
 				j == ft_strlen(param->tempmap[i]) - 1 ||
-				param->tempmap[i + 1][j - 1] == ' ' ||
+				//param->tempmap[i + 1][j - 1] == ' ' ||
 				param->tempmap[i][j + 1] == ' ' ||
-				param->tempmap[i + 1][j] == ' ' ||
-				param->tempmap[i + 1][j + 1] == ' ')
+				param->tempmap[i + 1][j] == ' ' )//||
+				//param->tempmap[i + 1][j + 1] == ' ')
 				error(8, param);
 		}
 	}

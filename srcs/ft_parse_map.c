@@ -39,13 +39,11 @@ int			get_finalmap(t_param *param)
 
 	j = 0;
 	len = 0;
-//	param->map = NULL;
 	if (!(param->map = malloc(sizeof(char *) * 64 * param->mapsize.y)))
 		error(1, param);
 	k = 0;
 	while (k < 64 * param->mapsize.y)
 		param->map[k++] = NULL;
-//	param->map[j] = NULL;
 	while (j < param->mapsize.y * 64)
 	{
 		i = 0;
@@ -54,10 +52,7 @@ int			get_finalmap(t_param *param)
 			error(1, param);
 		param->map[j][0] = 0;
 		while (i < 64 * len)
-		{
-			fill_map(param, i, j);
-			i++;
-		}
+			fill_map(param, i++, j);
 		param->map[j][i] = 0;
 		j++;
 	}

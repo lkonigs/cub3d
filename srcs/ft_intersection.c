@@ -22,7 +22,6 @@ t_point			inter_v(t_param *param, double angle, double t_ang, int c)
 		param->map[(int)b.pos.y][(int)b.pos.x] != '1')
 		b = update_pointv(b, angle, t_ang);
 	b.dist = update_dist(b, param);
-//	b.dist = sqrt(b.dist) * cos((angle - param->player.angle) * M_PI / 180);
 	if (b.pos.y < 0 || b.pos.y > param->mapsize.y * 64)
 		b.dist = -1;
 	if (angle >= 90 && angle < 270)
@@ -44,16 +43,8 @@ t_point			inter_h(t_param *pr, double ang, double tan, t_point b)
 		pr->map[(int)a.pos.y][(int)a.pos.x] != '1')
 		a = update_pointh(a, ang, tan);
 	a.dist = update_dist(a, pr);
-//	a.dist = sqrt(a.dist) * cos((ang - pr->player.angle) * M_PI / 180);
 	if (a.pos.x < 0 || a.pos.x >= ft_strlen(pr->map[(int)a.pos.y]))
 		a.dist = b.dist + 1;
-/**	if (abs(a.dist - b.dist) < 0.000001)
-	{
-		printf("player.x = %d || player.y = %d\n", pr->player.pos.x, pr->player.pos.y);
-		printf("a.x = %f || a.y = %f\n", a.pos.x, a.pos.y);
-		printf("b.x = %f || b.y = %f\n", b.pos.x, b.pos.y);
-		printf("a.dist = %f || b.dist == %f\n", a.dist, b.dist);
-	} */
 	if (a.dist <= b.dist || b.dist == -1)
 	{
 		if (ang < 180)
@@ -83,18 +74,11 @@ t_point			inter_cmp(t_point a, t_point b, t_param *p, double angle)
 {
 	t_point		t;
 
-/*	if (b.dist == a.dist)// && !(a.dist == -1 || b.dist == -1))
-	{
-		if (b.text == 'E' || a.text == 'N')
-			t = b;
-		else if (a.text == 'S')
-			t = a;
-	}
-	else */
-//	printf("angle = %f || ", angle);
-	if (((a.dist > b.dist) || (a.dist == -1) || (a.dist == b.dist && (angle < 270 && angle >= 180))) && b.dist > -1)
+	if (((a.dist > b.dist) || (a.dist == -1) ||
+		(a.dist == b.dist && (angle < 270 && angle >= 180))) && b.dist > -1)
 		t = b;
-	else if (((b.dist > a.dist) || (b.dist == -1) || (a.dist == b.dist)) && a.dist > -1)
+	else if (((b.dist > a.dist) || (b.dist == -1)
+		|| (a.dist == b.dist)) && a.dist > -1)
 		t = a;
 	else
 		error(12, p);

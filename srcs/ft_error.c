@@ -54,7 +54,7 @@ void	error_parse(int i, t_param *param)
 	ft_exit(param);
 }
 
-void	error_more(int i, t_param *param)
+void	error_more(int i)
 {
 	if (i == 10)
 		ft_putstr("Player: no player detected on the map\n");
@@ -85,6 +85,6 @@ void	error(int i, t_param *param)
 		ft_putstr("Map: map is open or invalid\n");
 	else if (i == 9)
 		ft_putstr("Wrong direction or number of players in the config file\n");
-	error_more(i, param);
+	error_more(i);
 	ft_exit(param);
 }

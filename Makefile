@@ -1,10 +1,12 @@
 SRCS		=	srcs/ft_cub3d.c \
 				srcs/ft_error.c \
+				srcs/ft_exit.c \
 				srcs/ft_init.c \
 				srcs/ft_parse.c \
 				srcs/ft_parse_text.c \
 				srcs/ft_parse_map.c \
-				srcs/ft_parse_others.c \
+				srcs/ft_parse_color.c \
+				srcs/ft_parse_res.c \
 				srcs/ft_wall_set.c \
 				srcs/ft_wall_tools.c \
 				srcs/ft_display.c \

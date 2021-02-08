@@ -1,13 +1,20 @@
 R 1500 1000
 
-NO ./textures/t_wood.xpm
+NO ./textures/t_metal.xpm
 WE ./textures/t_wood.xpm
-SO ./textures/t_wood.xpm
+SO ./textures/t_purple.xpm
 EA ./textures/t_stone.xpm
 S ./textures/sp_1.xpm
 F  101 , 34 , 25
 C  101 , 34 , 25 
- 1
-1S1
-121
- 1
+ 111111111111
+100000000000011
+100000000001001
+1000S000001 101
+100000000001001
+100000000000001
+11000000011111 
+110000001
+100111001
+ 11   11 
+

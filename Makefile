@@ -1,3 +1,15 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: lkonig <lkonig@student.42.fr>              +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2020/10/27 15:26:59 by lkonig            #+#    #+#              #
+#    Updated: 2020/10/27 15:27:18 by lkonig           ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
 SRCS		=	srcs/ft_cub3d.c \
 				srcs/ft_error.c \
 				srcs/ft_exit.c \
@@ -17,7 +29,8 @@ SRCS		=	srcs/ft_cub3d.c \
 				srcs/ft_sprite_sort.c \
 				srcs/ft_intersection_tools.c \
 				srcs/ft_intersection_init.c \
-				srcs/ft_checkconditions.c \
+				srcs/ft_check_map.c \
+				srcs/ft_check_others.c \
 				srcs/ft_sprite_set.c \
 				srcs/ft_save.c
 

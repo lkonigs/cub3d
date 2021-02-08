@@ -12,8 +12,6 @@
 
 #include "libft.h"
 
-#include <stdio.h>//
-
 int				endline(char *alreadyread)
 {
 	int			len;
@@ -80,9 +78,7 @@ int				get_next_line(int fd, char **line)
 		&& ((moretoread = read(fd, buf, BUFFER_SIZE)) > 0))
 		alreadyread = fillread(moretoread, buf, alreadyread);
 	if (moretoread < 0)
-	{
 		return (erreur(alreadyread));
-	}
 	if ((len = endline(alreadyread)) >= 0)
 	{
 		alreadyread = emptyread(line, alreadyread, len);
@@ -94,6 +90,5 @@ int				get_next_line(int fd, char **line)
 		*line = ft_strjoin(alreadyread, buf);
 	}
 	ft_free(alreadyread);
-	alreadyread = NULL;
 	return (0);
 }

@@ -66,20 +66,20 @@ int			apply_line(int i, int j, t_param *param, char *line)
 
 	k = -1;
 	res = 0;
-	param->endmap = 1;
-	if (param->startmap == -1)
-	{
-		param->startmap = 1;
-		param->endmap = -1;
-	}
+	check_init(param);
 	while (line[++k])
 	{
 		param->tempmap[i][++j] = line[k];
 		if (line[k] != '1' && line[k] != ' ')
 			param->endmap = -1;
 		if (line[k] == '0' || line[k] >= 'A')
+		{
 			res = check_map(param, i, j, 0);
+			param->inmap = 1;
+		}
 	}
+	if (param->inmap == -1)
+		param->endmap = -1;
 	param->tempmap[i++][++j] = 0;
 	return (res);
 }

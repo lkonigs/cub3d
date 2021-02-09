@@ -18,7 +18,8 @@ t_point			inter_v(t_param *param, double angle, double t_ang, int c)
 
 	b.col = c;
 	b = init_ptv(angle, b, param, t_ang);
-	while (b.pos.y > 0 && b.pos.y < param->mapsize.y * 64 &&
+	while (b.pos.y > 0 && b.pos.y < param->mapsize.y * 64
+		&& (int)b.pos.x < ft_strlen(param->map[(int)b.pos.y]) &&
 		param->map[(int)b.pos.y][(int)b.pos.x] != '1')
 		b = update_pointv(b, angle, t_ang);
 	b.dist = update_dist(b, param);

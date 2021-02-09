@@ -42,13 +42,13 @@ void	error_parse(int i, t_param *param)
 	else if (i == 4)
 		ft_putstr("Config file: invalid key or non empty line (space)\n");
 	else if (i == 5)
-		ft_putstr("Map: double line of '1'/attempt to create a 2nd map\n");
+		ft_putstr("Map: a line after map is not empty\n");
 	else if (i == 6)
 		ft_putstr("Texture: error while turning xpm file into mlx image\n");
 	else if (i == 7)
 		ft_putstr("Texture: invalid path/file (may be due to extra spaces)\n");
 	else if (i == 8)
-		ft_putstr("Map: map is open/invalid (empty line, wrong direction)\n");
+		ft_putstr("Map: map is open/invalid (empty line, wrong char)\n");
 	else if (i == 9)
 		ft_putstr("Error while allocating memory\n");
 	ft_exit(param);

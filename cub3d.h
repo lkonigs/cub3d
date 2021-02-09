@@ -15,7 +15,7 @@
 
 # define FOV 		60
 # define PMS		20.0
-# define PTS		20
+# define PTS		12
 # define WH			64
 # define PR			20
 
@@ -62,7 +62,7 @@ typedef struct		s_point
 {
 	t_multidouble	pos;
 	int				col;
-	int				dist;
+	double			dist;
 	char			text;
 }					t_point;
 
@@ -96,7 +96,9 @@ typedef struct		s_param
 	int				error;
 	int				nbparam;
 	int				startmap;
+	int				inmap;
 	int				endmap;
+	int				endfile;
 	t_multiint		res;
 	t_multiint		save_res;
 	t_multiint		screen_res;
@@ -134,6 +136,8 @@ typedef struct		s_spwall
 }					t_spwall;
 
 int					check_map(t_param *param, int i, int j, int type);
+int					check_wall(char *line, int i);
+void				check_init(t_param *param);
 int					check_sp(t_param *param, int i, int j, unsigned int k);
 int					check_inter_sp(t_point b, t_param *param, unsigned int k);
 int					open_configfile(int argc, char **argv, int *save);

@@ -27,6 +27,8 @@ void						ft_save_init(t_param *param)
 
 	param->res.x = param->save_res.x;
 	param->res.y = param->save_res.y;
+	param->plane.dist = (param->res.x / 2) / tan((FOV / 2) * M_PI / 180);
+	param->plane.angles = (double)FOV / (double)param->res.x;
 	param->imgptr = mlx_new_image(param->mlx_ptr, param->res.x, param->res.y);
 	param->imgstr = mlx_get_data_addr(param->imgptr, &u, &u, &u);
 }

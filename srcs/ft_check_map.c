@@ -61,3 +61,33 @@ int		check_map(t_param *param, int i, int j, int type)
 	}
 	return (0);
 }
+
+int		check_wall(char *line, int i)
+{
+	int j;
+	int	wall;
+
+	j = i;
+	wall = 0;
+	while (line[j])
+	{
+		if (line[j] == '1')
+			wall = 1;
+		if (line[j] != '1' && line[j] != ' ')
+			return (1);
+		j++;
+	}
+	if (wall == 0)
+		return (1);
+	return (0);
+}
+
+void	check_init(t_param *param)
+{
+	param->endmap = 1;
+	if (param->startmap == -1)
+	{
+		param->startmap = 1;
+		param->endmap = -1;
+	}
+}

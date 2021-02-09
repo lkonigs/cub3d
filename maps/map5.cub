@@ -1,20 +1,22 @@
-R 1500 1000
 
-NO ./textures/t_metal.xpm
-WE ./textures/t_wood.xpm
+
+S ./textures/sp_0.xpm
+F 255,255,255
+C 255,255,255
+
+
+WE ./textures/t_stone2.xpm
 SO ./textures/t_purple.xpm
-EA ./textures/t_stone.xpm
-S ./textures/sp_1.xpm
-F  101 , 34 , 25
-C  101 , 34 , 25 
+EA ./textures/t_wood.xpm
+
+R 900 500
+NO ./textures/t_beach.xpm
+
+1111111
  111111111111
 100000000000011
-100000000001001
-1000S000001 101
-100000000001001
-100000000000001
-11000000011111 
-110000001
-100111001
- 11   11 
-
+102000000001001
+1000N000001 11
+100002000001001
+ 1111111111111
+1 1111111

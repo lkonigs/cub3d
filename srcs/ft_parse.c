@@ -95,11 +95,11 @@ int			parse_beforemap(t_param *param, char *line, int i)
 			if (parse_col(line + i, param) == -1)
 				return (2);
 		}
-		else if (((line[i] == 'N' && line[i + 1] == 'O')
-					|| (line[i] == 'S' && line[i + 1] == 'O')
-					|| (line[i] == 'W' && line[i + 1] == 'E')
-					|| (line[i] == 'E' && line[i + 1] == 'A')
-					|| (line[i] == 'S' && line[i + 1] == ' ')))
+		else if ((((line[i] == 'N' && line[i + 1] == 'O')
+			|| (line[i] == 'S' && line[i + 1] == 'O') || (line[i] == 'W'
+			&& line[i + 1] == 'E') || (line[i] == 'E'
+			&& line[i + 1] == 'A')) && (line[i + 2] == ' '))
+			|| (line[i] == 'S' && line[i + 1] == ' '))
 		{
 			if (parse_text(line, param) == -1)
 				return (7);
@@ -116,12 +116,19 @@ int			parse_configline(char *line, t_param *param)
 
 	i = 0;
 	if (param->endmap == 1 && !(*line))
+	{
+		param->endfile = 1;
 		return (0);
-	else if (param->endmap == 1 && line[i] == '1')
-		return (5);
-	else if (param->endmap == 1 && line[i] == ' ')
+	}
+	else if (param->endmap == 1 && param->endfile == -1
+		&& (line[i] == '1' || line[i] == ' '))
+	{
+		if (check_wall(line, i) == 1)
+			return (5);
+	}
+	else if (param->endmap == 1 && line[i] == ' ' && param->endfile == 1)
 		return (1);
-	else if (param->endmap == 1)
+	else if (param->endmap == 1 && param->endfile == 1)
 		return (1);
 	while (line[i] == ' ')
 		i++;

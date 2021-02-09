@@ -41,16 +41,15 @@ CFLAGS_MLX	=	-lmlx -L ./minilibX/ -lXext -lX11
 CFLAGS_TEST	=	-g3 -fsanitize=address
 NAME		=	cub3D
 
-$(NAME):	make_libs test
+$(NAME):	${OBJS}
+			$(MAKE) make_libs
+			${CC} ${CFLAGS} -o ${NAME} ${OBJS} ./libft/libft.a ${CFLAGS_MLX} ./minilibX/libmlx.a -lm
 
 make_libs:
 			$(MAKE) all -C ./libft/
 			$(MAKE) all -C ./minilibX/
 
 all:		$(NAME)
-
-test:		${OBJS}
-			${CC} ${CFLAGS} -o ${NAME} ${OBJS} ./libft/libft.a ${CFLAGS_MLX} ./minilibX/libmlx.a -lm
 
 clean:
 			$(MAKE) clean -C ./libft/

@@ -74,6 +74,7 @@ void				display(t_param *param, int save)
 	param->plane.angles = (double)FOV / (double)param->res.x;
 	if (save == 1)
 		ft_save(param, "./save/save.bmp");
+	param->win_ptr = NULL;
 	param->win_ptr = mlx_new_window(param->mlx_ptr, param->res.x,
 		param->res.y, "Cub3D");
 	if (param->win_ptr == NULL)

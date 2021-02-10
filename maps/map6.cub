@@ -1,8 +1,8 @@
 R 750 500
 
 NO ./textures/t_bricks.xpm
-SO ./textures/t_metal.xpm
-WE ./textures/t_stone.xpm
+SO ./textures/t_bricks.xpm
+WE ./textures/t_bricks.xpm
 EA ./textures/t_wood.xpm
 
 S ./textures/sp_3.xpm

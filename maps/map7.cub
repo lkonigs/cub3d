@@ -1,13 +1,13 @@
 R 600 500
 
-NO ./textures/t_purple.xpm
-SO ./textures/t_metal.xpm
-EA ./textures/t_wood.xpm
+NO ./textures/t_stone2.xpm
+SO ./textures/t_stone.xpm
+EA ./textures/t_stone2.xpm
 WE ./textures/t_stone.xpm
 S ./textures/sp_0.xpm
 
-F 200,100,0
-C 0,100,200
+F 120,120  ,120
+C 140,130,120
 
 111111111111111111111111111111
 112111111111000000011110000001

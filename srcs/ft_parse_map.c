@@ -96,18 +96,19 @@ int			parse_map(char *line, t_param *param)
 	if (!(param->tempmap[i] = malloc(sizeof(char) * (ft_strlen(line) + 1))))
 		return (9);
 	param->tempmap[i][0] = 0;
-	while (line[++j])
+	while (line[++j] && res == 0)
 	{
 		if (line[j] != '0' && line[j] != '1' && line[j] != '2'
 			&& line[j] != 'N' && line[j] != 'S' && line[j] != 'E'
 			&& line[j] != 'W' && line[j] != ' ')
-			return (-1);
+			res = -1;
 		if (line[j] == 'N' || line[j] == 'S' || line[j] == 'E'
 			|| line[j] == 'W')
 			param->player.nb++;
 	}
 	j = -1;
-	res = apply_line(i, j, param, line);
+	if (res == 0)
+		res = apply_line(i, j, param, line);
 	param->mapsize.y++;
 	return (res);
 }

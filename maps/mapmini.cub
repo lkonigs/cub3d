@@ -1,0 +1,11 @@
+R 600 400
+NO ./textures/t_wood.xpm
+SO ./textures/t_wood.xpm
+WE ./textures/t_wood.xpm
+EA ./textures/t_wood.xpm
+S ./textures/sp_0.xpm
+F 100,100,100
+C 200,200,200
+111
+1S1
+111

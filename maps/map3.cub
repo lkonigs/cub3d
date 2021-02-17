@@ -1,20 +1,11 @@
-R 1020 756
-
-NO ./textures/t_bricks.xpm
-SO ./textures/t_purple.xpm
-WE ./textures/t_flag.xpm
+R 600 400
+NO ./textures/t_wood.xpm
+SO ./textures/t_wood.xpm
+WE ./textures/t_wood.xpm
 EA ./textures/t_wood.xpm
-
-S ./textures/sp_3.xpm
-F 142,85,0
-C 2,10,200
-
-1111111111111111
-10S0120000001001
-1000110110100001
-1020000100011101
-1011101101000101
-1000100001110101
-1011111100010101
-1000000000000001
-1111111111111111
+S ./textures/sp_0.xpm
+F 100,100,100
+C 200,200,200
+111
+1S1
+111

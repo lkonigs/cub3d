@@ -5,12 +5,12 @@ F 255,255,255
 C 255,255,255
 
 
-WE ./textures/t_stone2.xpm
+WE ./textures/t_beach.xpm
 SO ./textures/t_purple.xpm
-EA ./textures/t_wood.xpm
+EA ./textures/t_stone2.xpm
 
 R 900 500
-NO ./textures/t_beach.xpm
+NO ./textures/t_wood.xpm
 
 1111111
  111111111111

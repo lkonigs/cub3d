@@ -15,7 +15,7 @@
 
 # define FOV 		60
 # define PMS		20.0
-# define PTS		12
+# define PTS		10
 # define WH			64
 # define PR			20
 

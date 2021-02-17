@@ -44,17 +44,11 @@ t_point			inter_h(t_param *pr, double ang, double tan, t_point b)
 		pr->map[(int)a.pos.y][(int)a.pos.x] != '1')
 		a = update_pointh(a, ang, tan);
 	a.dist = update_dist(a, pr);
-	if (a.pos.x < 0 || a.pos.x >= ft_strlen(pr->map[(int)a.pos.y]))
-		a.dist = b.dist + 1;
-	if (a.dist <= b.dist || b.dist == -1)
-	{
-		if (ang < 180)
-			a.text = 'S';
-		else
-			a.text = 'N';
-		return (a);
-	}
-	return (b);
+	if (ang < 180)
+		a.text = 'S';
+	else
+		a.text = 'N';
+	return (a);
 }
 
 t_point			intersection(t_param *param, int col, double angle)

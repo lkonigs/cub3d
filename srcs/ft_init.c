@@ -19,6 +19,7 @@ void	init_parse(t_param *param)
 	param->inmap = -1;
 	param->endmap = -1;
 	param->endfile = -1;
+	param->spline = -1;
 	param->error = -1;
 	param->map = NULL;
 	param->no_ptr = NULL;

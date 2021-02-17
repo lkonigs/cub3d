@@ -76,7 +76,7 @@ void				display(t_param *param, int save)
 		ft_save(param, "./save/save.bmp");
 	param->win_ptr = NULL;
 	param->win_ptr = mlx_new_window(param->mlx_ptr, param->res.x,
-		param->res.y, "Cub3D");
+		param->res.y, "cub3D");
 	if (param->win_ptr == NULL)
 		ft_exit(param);
 	param->imgptr = mlx_new_image(param->mlx_ptr, param->res.x, param->res.y);

@@ -120,14 +120,15 @@ int			parse_configline(char *line, t_param *param)
 		param->endfile = 1;
 		return (0);
 	}
-	else if (param->endmap == 1 && param->endfile == -1
-		&& (line[i] == '1' || line[i] == ' '))
+	else if (param->endmap == 1 && param->endfile == -1)
 	{
-		if (check_wall(line, i) == 1)
+		if (only_space(line, i) == 1)
+			param->spline = 1;
+		else if (param->spline == 1 && (check_wall(line, i) == 0))
+			after_spaceline(param);
+		else if (check_wall(line, i) == 1)
 			return (5);
 	}
-	else if (param->endmap == 1 && line[i] == ' ' && param->endfile == 1)
-		return (1);
 	else if (param->endmap == 1 && param->endfile == 1)
 		return (1);
 	while (line[i] == ' ')

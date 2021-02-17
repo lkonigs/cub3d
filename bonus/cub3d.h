@@ -85,8 +85,6 @@ typedef struct		s_param
 {
 	char			**tempmap;
 	char			**map;
-	int				nbx;
-	int				nby;
 	void			*no_ptr;
 	void			*so_ptr;
 	void			*ea_ptr;
@@ -106,6 +104,7 @@ typedef struct		s_param
 	int				nbparam;
 	int				startmap;
 	int				inmap;
+	int				spline;
 	int				endmap;
 	int				endfile;
 	t_multiint		res;

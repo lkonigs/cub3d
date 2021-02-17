@@ -15,10 +15,9 @@
 void	init_parse(t_param *param)
 {
 	param->nbparam = 0;
-	param->nbx = 0;
-	param->nby = 0;
 	param->startmap = -1;
 	param->inmap = -1;
+	param->spline = -1;
 	param->endmap = -1;
 	param->endfile = -1;
 	param->error = -1;

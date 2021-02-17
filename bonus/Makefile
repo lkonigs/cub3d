@@ -17,6 +17,7 @@ SRCS		=	srcs/ft_cub3d.c \
 				srcs/ft_parse.c \
 				srcs/ft_parse_text.c \
 				srcs/ft_parse_map.c \
+				srcs/ft_parse_endmap.c \
 				srcs/ft_parse_color.c \
 				srcs/ft_parse_res.c \
 				srcs/ft_wall_set.c \

@@ -39,11 +39,8 @@ int				set_sky(int i, t_param *param, t_wall w)
 {
 	while (i < w.pos.y)
 	{
-	//	param->imgstr[i] = (char)param->ccol[2];
 		i++;
-	//	param->imgstr[i] = (char)param->ccol[1];
 		i++;
-	//	param->imgstr[i] = (char)param->ccol[0];
 		i++;
 		i += param->res.x * 4 - 3;
 	}
@@ -93,6 +90,5 @@ double			set_col(t_param *param, t_wall w, char *str)
 	i = set_sky(i, param, w);
 	set_mid(w, str + i, param);
 	i += w.height * 4 * param->res.x;
-//	set_floor(i, param);
 	return (w.dist);
 }

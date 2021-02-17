@@ -34,7 +34,8 @@ void	error_parse(int i, t_param *param)
 {
 	ft_putstr("Error\n");
 	if (i == 1)
-		ft_putstr("Config file: does not end with the last map line\n");
+		ft_putstr("Config file:\
+		does not end with the last map line (may be due to extra spaces)\n");
 	else if (i == 2)
 		ft_putstr("F/C: wrong format\n");
 	else if (i == 3)

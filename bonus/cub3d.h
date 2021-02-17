@@ -226,6 +226,8 @@ void				get_sprite(t_param *param, int i, int j, unsigned int k);
 void				ft_sprite(t_param *param);
 int					check_proximity_x(int max_pos, int gv_pos, t_param *param);
 int					check_proximity_y(int max_pos, int gv_pos, t_param *param);
+int					only_space(char *line, int i);
+void				after_spaceline(t_param *param);
 void				print_hud(t_param *param);
 int					darken(int color, double distance);
 void				floor_texture(t_param *param);

@@ -12,8 +12,6 @@
 
 #include "../cub3d.h"
 
-#include <stdio.h> //
-
 void		set_dirvect(t_param *param)
 {
 	if ((param->player.angle == 180))
@@ -112,18 +110,6 @@ int			parse_beforemap(t_param *param, char *line, int i)
 	return (parse_aftermap(param, line, i));
 }
 
-int			only_space(char *line, int i)
-{
-	while (line[i])
-	{
-		//prendre en compte la longueur de la ligne
-		if (line[i] != ' ')
-			return (0);
-		i++;
-	}
-	return (1);
-}
-
 int			parse_configline(char *line, t_param *param)
 {
 	int		i;
@@ -139,17 +125,9 @@ int			parse_configline(char *line, t_param *param)
 		if (only_space(line, i) == 1)
 			param->spline = 1;
 		else if (param->spline == 1 && (check_wall(line, i) == 0))
-		{
-			param->startmap = 1;
-			param->inmap = -1;
-			param->endmap = -1;
-			param->spline = -1;
-		}
+			after_spaceline(param);
 		else if (check_wall(line, i) == 1)
-		{
-			printf("'%s'\n", line);
 			return (5);
-		}
 	}
 	else if (param->endmap == 1 && param->endfile == 1)
 		return (1);

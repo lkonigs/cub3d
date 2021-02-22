@@ -44,7 +44,7 @@ int				parse_res(char *line, t_param *param)
 	param->nbparam++;
 	mlx_get_screen_size(param->mlx_ptr, &param->screen_res.x,
 		&param->screen_res.y);
-	while (*line == ' ' || *line == 'R')
+	while (*line == ' ')
 		line++;
 	param->save_res.x = ft_atoi(line);
 	while (ft_isdigit(*line))

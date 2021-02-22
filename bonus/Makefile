@@ -10,41 +10,41 @@
 #                                                                              #
 # **************************************************************************** #
 
-SRCS		=	srcs/ft_cub3d.c \
-				srcs/ft_error.c \
-				srcs/ft_exit.c \
-				srcs/ft_init.c \
-				srcs/ft_parse.c \
-				srcs/ft_parse_text.c \
-				srcs/ft_parse_map.c \
-				srcs/ft_parse_endmap.c \
-				srcs/ft_parse_color.c \
-				srcs/ft_parse_res.c \
-				srcs/ft_wall_set.c \
-				srcs/ft_wall_tools.c \
-				srcs/ft_display.c \
-				srcs/ft_event.c \
-				srcs/ft_event_turn.c \
-				srcs/ft_intersection.c \
-				srcs/ft_sprite.c \
-				srcs/ft_sprite_sort.c \
-				srcs/ft_intersection_tools.c \
-				srcs/ft_intersection_init.c \
-				srcs/ft_check_map.c \
-				srcs/ft_check_others.c \
-				srcs/ft_sprite_set.c \
-				srcs/ft_save.c \
-				srcs/ft_bonus_floor.c \
-				srcs/ft_bonus_sky.c \
-				srcs/ft_bonus_dark.c \
-				srcs/ft_bonus_print.c
+SRCS		=	srcs/ft_cub3d_bonus.c \
+				srcs/ft_error_bonus.c \
+				srcs/ft_exit_bonus.c \
+				srcs/ft_init_bonus.c \
+				srcs/ft_parse_bonus.c \
+				srcs/ft_parse_text_bonus.c \
+				srcs/ft_parse_map_bonus.c \
+				srcs/ft_parse_endmap_bonus.c \
+				srcs/ft_parse_color_bonus.c \
+				srcs/ft_parse_res_bonus.c \
+				srcs/ft_wall_set_bonus.c \
+				srcs/ft_wall_tools_bonus.c \
+				srcs/ft_display_bonus.c \
+				srcs/ft_event_bonus.c \
+				srcs/ft_event_turn_bonus.c \
+				srcs/ft_intersection_bonus.c \
+				srcs/ft_sprite_bonus.c \
+				srcs/ft_sprite_sort_bonus.c \
+				srcs/ft_intersection_tools_bonus.c \
+				srcs/ft_intersection_init_bonus.c \
+				srcs/ft_check_map_bonus.c \
+				srcs/ft_check_others_bonus.c \
+				srcs/ft_sprite_set_bonus.c \
+				srcs/ft_save_bonus.c \
+				srcs/ft_bonus_floor_bonus.c \
+				srcs/ft_bonus_sky_bonus.c \
+				srcs/ft_bonus_dark_bonus.c \
+				srcs/ft_bonus_print_bonus.c
 
 OBJS		=	${SRCS:.c=.o}
 CC			=	gcc
 CFLAGS		=	-Wall -Wextra -Werror -g
 CFLAGS_MLX	=	-lmlx -L ./minilibX/ -lXext -lX11
 CFLAGS_TEST	=	-g3 -fsanitize=address
-NAME		=	cub3D
+NAME		=	cub3D_bonus
 
 $(NAME):	${OBJS}
 			$(MAKE) make_libs

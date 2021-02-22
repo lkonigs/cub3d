@@ -12,8 +12,32 @@
 
 #include "../cub3d.h"
 
+int		check_empty(t_param *param, int i, int j)
+{
+	if (!param->tempmap[i][j + 1] ||
+		!param->tempmap[i + 1][j] ||
+		(!param->tempmap[i + 1][j + 1] &&
+		(param->tempmap[i + 1][j] != '1' ||
+		param->tempmap[i][j + 1] != '1')) ||
+		(!param->tempmap[i + 1][j - 1] &&
+		(param->tempmap[i + 1][j] != '1' ||
+		param->tempmap[i][j - 1] != '1')) ||
+		!param->tempmap[i - 1][j] ||
+		!param->tempmap[i][j - 1] ||
+		(!param->tempmap[i - 1][j - 1] &&
+		(param->tempmap[i - 1][j] != '1' ||
+		param->tempmap[i][j - 1] != '1')) ||
+		(!param->tempmap[i - 1][j + 1] &&
+		(param->tempmap[i][j + 1] != '1' ||
+		param->tempmap[i - 1][j] != '1')))
+		return (1);
+	return (0);
+}
+
 int		check_finalmap(t_param *param, int i, int j)
 {
+	if (check_empty(param, i, j) == 1)
+		return (1);
 	if (param->tempmap[i][j + 1] == ' ' ||
 		param->tempmap[i + 1][j] == ' ' ||
 		(param->tempmap[i + 1][j + 1] == ' ' &&

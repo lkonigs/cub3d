@@ -87,7 +87,7 @@ int			parse_beforemap(t_param *param, char *line, int i)
 	{
 		if ((line[i] == 'R') && line[i + 1] == ' ')
 		{
-			if (parse_res(line, param) == -1)
+			if (parse_res(line + i + 2, param) == -1)
 				return (3);
 		}
 		else if ((line[i] == 'F' || line[i] == 'C') && line[i + 1] == ' ')
@@ -127,7 +127,7 @@ int			parse_configline(char *line, t_param *param)
 		else if (param->spline == 1 && (check_wall(line, i) == 0))
 			after_spaceline(param);
 		else if (check_wall(line, i) == 1)
-			return (5);
+			param->endmap = -1;
 	}
 	else if (param->endmap == 1 && param->endfile == 1)
 		return (1);

@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_parse_text.c                                    :+:      :+:    :+:   */
+/*   ft_parse_text_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lkonig <lkonig@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -10,9 +10,9 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../cub3d.h"
+#include "../cub3d_bonus.h"
 
-void			parse_text_sky_fl(t_param *param)
+int				parse_text_sky_fl(t_param *param)
 {
 	int			u;
 
@@ -22,6 +22,7 @@ void			parse_text_sky_fl(t_param *param)
 	if (!(param->sky_ptr = mlx_xpm_file_to_image(param->mlx_ptr,
 		"textures/sky.xpm", &u, &u)))
 		return (-1);
+	return (0);
 }
 
 int				parse_text_sp(t_param *param, char *line, char a, char b)
@@ -83,7 +84,8 @@ int				parse_text_no_so(t_param *param, char *line, char a, char b)
 			line + i, &u, &u)))
 			return (-1);
 		param->no_text = mlx_get_data_addr(param->no_ptr, &u, &u, &u);
-		parse_text_sky_fl(param);
+		if (parse_text_sky_fl(param) == -1)
+			return (-1);
 	}
 	else if (a == 'S' && b == 'O' && !param->so_ptr)
 	{

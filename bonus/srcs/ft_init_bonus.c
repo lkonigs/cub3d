@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_init.c                                          :+:      :+:    :+:   */
+/*   ft_init_bonus.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lkonig <lkonig@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -10,16 +10,16 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../cub3d.h"
+#include "../cub3d_bonus.h"
 
 void	init_parse(t_param *param)
 {
 	param->nbparam = 0;
 	param->startmap = -1;
 	param->inmap = -1;
-	param->spline = -1;
 	param->endmap = -1;
 	param->endfile = -1;
+	param->spline = -1;
 	param->error = -1;
 	param->map = NULL;
 	param->no_ptr = NULL;

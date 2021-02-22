@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_parse_res.c                                     :+:      :+:    :+:   */
+/*   ft_parse_res_bonus.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lkonig <lkonig@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../cub3d.h"
+#include "../cub3d_bonus.h"
 
 void			res_comp(int tmp, t_param *param, int i)
 {
@@ -44,7 +44,7 @@ int				parse_res(char *line, t_param *param)
 	param->nbparam++;
 	mlx_get_screen_size(param->mlx_ptr, &param->screen_res.x,
 		&param->screen_res.y);
-	while (*line == ' ' || *line == 'R')
+	while (*line == ' ')
 		line++;
 	param->save_res.x = ft_atoi(line);
 	while (ft_isdigit(*line))

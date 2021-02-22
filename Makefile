@@ -41,6 +41,7 @@ CFLAGS		=	-Wall -Wextra -Werror -g
 CFLAGS_MLX	=	-lmlx -L ./minilibX/ -lXext -lX11
 CFLAGS_TEST	=	-g3 -fsanitize=address
 NAME		=	cub3D
+BONUS		=	cub3D_bonus
 
 $(NAME):	${OBJS}
 			$(MAKE) make_libs
@@ -62,5 +63,18 @@ fclean:		clean
 			rm -f ${NAME}
 
 re:			fclean ${NAME}
+
+bonus:		$(BONUS)
+
+$(BONUS):
+			cd bonus && $(MAKE) all && mv cub3D_bonus ..
+
+bonus_clean:
+			cd bonus && $(MAKE) fclean
+
+bonus_fclean: bonus_clean
+			rm -f cub3D_bonus
+
+bonus_re:	bonus_fclean bonus
 
 .PHONY:		all clean fclean re test make_libs

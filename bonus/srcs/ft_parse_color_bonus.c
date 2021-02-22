@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_parse_color.c                                   :+:      :+:    :+:   */
+/*   ft_parse_color_bonus.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lkonig <lkonig@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -10,14 +10,19 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../cub3d.h"
+#include "../cub3d_bonus.h"
 
 char			col_letter(char *line, char letter)
 {
-	if (*line == 'F' && letter == 'A')
-		letter = 'F';
-	else if (*line == 'C' && letter == 'A')
-		letter = 'C';
+	if (ft_isalpha(*line))
+	{
+		if (*line == 'F' && letter == 'A')
+			letter = 'F';
+		else if (*line == 'C' && letter == 'A')
+			letter = 'C';
+		else
+			letter = 'Z';
+	}
 	return (letter);
 }
 

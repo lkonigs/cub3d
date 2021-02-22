@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_intersection.c                                  :+:      :+:    :+:   */
+/*   ft_intersection_bonus.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lkonig <lkonig@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../cub3d.h"
+#include "../cub3d_bonus.h"
 
 t_point			inter_v(t_param *param, double angle, double t_ang, int c)
 {
@@ -69,14 +69,14 @@ t_point			inter_cmp(t_point a, t_point b, t_param *p, double angle)
 {
 	t_point		t;
 
-	if (((a.dist > b.dist) || (a.dist == -1) ||
-		(a.dist == b.dist && (angle < 270 && angle >= 180))) && b.dist > -1)
-		t = b;
-	else if (((b.dist > a.dist) || (b.dist == -1)
+	if (((b.dist + 0.00000001 > a.dist) || (b.dist == -1)
 		|| (a.dist == b.dist)) && a.dist > -1)
 		t = a;
+	else if (((a.dist > b.dist) || (a.dist == -1) ||
+		(a.dist == b.dist && (angle < 270 && angle >= 180))) && b.dist > -1)
+		t = b;
 	else
-		error(12, p);
+		t = a;
 	t.dist = sqrt(t.dist) * cos((angle - p->player.angle) * M_PI / 180);
 	return (t);
 }

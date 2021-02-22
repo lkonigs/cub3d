@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_check_map.c                                     :+:      :+:    :+:   */
+/*   ft_check_map_bonus.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lkonig <lkonig@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -10,10 +10,34 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../cub3d.h"
+#include "../cub3d_bonus.h"
+
+int		check_empty(t_param *param, int i, int j)
+{
+	if (!param->tempmap[i][j + 1] ||
+		!param->tempmap[i + 1][j] ||
+		(!param->tempmap[i + 1][j + 1] &&
+		(param->tempmap[i + 1][j] != '1' ||
+		param->tempmap[i][j + 1] != '1')) ||
+		(!param->tempmap[i + 1][j - 1] &&
+		(param->tempmap[i + 1][j] != '1' ||
+		param->tempmap[i][j - 1] != '1')) ||
+		!param->tempmap[i - 1][j] ||
+		!param->tempmap[i][j - 1] ||
+		(!param->tempmap[i - 1][j - 1] &&
+		(param->tempmap[i - 1][j] != '1' ||
+		param->tempmap[i][j - 1] != '1')) ||
+		(!param->tempmap[i - 1][j + 1] &&
+		(param->tempmap[i][j + 1] != '1' ||
+		param->tempmap[i - 1][j] != '1')))
+		return (1);
+	return (0);
+}
 
 int		check_finalmap(t_param *param, int i, int j)
 {
+	if (check_empty(param, i, j) == 1)
+		return (1);
 	if (param->tempmap[i][j + 1] == ' ' ||
 		param->tempmap[i + 1][j] == ' ' ||
 		(param->tempmap[i + 1][j + 1] == ' ' &&
